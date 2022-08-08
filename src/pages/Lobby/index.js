@@ -9,6 +9,8 @@ const Lobby = () => {
     const user = useSelector((state) => state.player);
     const socket = useSelector((state) => state.socket);
 
+    console.log(data)
+
     const dispatch = useDispatch();
 
     const colors = ["lightred", "lightgreen", "lightblue", "orange", "yellow", "pink"];

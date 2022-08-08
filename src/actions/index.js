@@ -1,5 +1,3 @@
-
-
 const storeSocket = (socket) => {
     return {
         type: 'STORE_SOCKET',
@@ -9,7 +7,7 @@ const storeSocket = (socket) => {
 
 const changeState = (data) => {
     return {
-        type: 'CHANGE_GAME_STATE',
+        type: 'CHANGE_STATE',
         payload: data
     }
 }
