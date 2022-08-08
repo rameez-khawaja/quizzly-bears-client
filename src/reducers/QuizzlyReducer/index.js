@@ -6,6 +6,9 @@ const initState = {
 
 const quizzlyReducer = (state=initState, action) => {
     switch(action.type) {
+        case 'STORE_SOCKET':
+            return {...state, 
+                socket: action.payload};
         default:
             return state;
     }
