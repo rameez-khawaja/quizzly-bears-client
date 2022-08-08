@@ -214,7 +214,7 @@ const Home = () => {
 
                         </div>
                         <Backdrop onClick={handleCloseGameModal}>
-                        <Modal open={createGame} className="mx-auto col-lg-4 col-md-6 col-sm-8 col-12 " style={{top:250}}>
+                        <Modal open={createGame} className="mx-auto col-lg-4 col-md-6 col-sm-8 col-12 " style={{top:"35vh"}}>
                             <motion.div
                             variants={dropIn}
                             onClick={(e) => e.stopPropagation()}

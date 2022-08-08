@@ -84,7 +84,7 @@ export default function CreateGame() {
 
     return (
 
-        <section className='col-12 pt-5 mt-5 w-auto'>
+        <section className='col-12 py-5'>
             <div className='container bg-light card text-center py-3 col-lg-4 col-md-6 col-sm-8 col-12 w-auto'>
                 <form onSubmit={handleFormSubmit} className="card pb-2">
                     <div className='py-2'>
