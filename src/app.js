@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Home, Lobby, Game, HighScores, Results } from "./pages";
 import { useDispatch, useSelector } from "react-redux";
-import { Switch, Route } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 import { storeSocket } from "./actions"
 const io = require("socket.io-client");
 const URL = "http://localhost:3000";
@@ -38,23 +38,13 @@ const App = () => {
 
 
   return (
-    <Switch>
-      <Route exact path="/">
-        <Home />
-      </Route>
-      <Route path="/lobby">
-        <Lobby />
-      </Route>
-      <Route path="/play">
-        <Game />
-      </Route>
-      <Route path="/results">
-        <Results />
-      </Route>
-      <Route path="/highscores">
-        <HighScores />
-      </Route>
-    </Switch>
+    <Routes>
+      <Route exact path="/" element={<Home />}/>
+      <Route path="/lobby" element={<Lobby />}/>
+      <Route path="/play" element={<Game />}/>
+      <Route path="/results" element={<Results />}/>
+      <Route path="/highscores" element={<HighScores />}/>
+    </Routes>
   );
 }
 
