@@ -5,6 +5,7 @@ import { Routes, Route } from "react-router-dom";
 import { storeSocket } from "./actions"
 const io = require("socket.io-client");
 const URL = "http://localhost:3000";
+import './App.css'
 
 const App = () => {
   const [socket, setSocket] = useState();
