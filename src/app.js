@@ -2,9 +2,16 @@ import React, { useEffect, useState } from "react";
 import { Home, Lobby, Game, HighScores, Results } from "./pages";
 import { useDispatch, useSelector } from "react-redux";
 import { Routes, Route } from "react-router-dom";
-import { storeSocket } from "./actions"
 const io = require("socket.io-client");
 const URL = "http://localhost:3000";
+
+import {
+  changeState,
+  storeSocket,
+  addUser,
+  updateScore,
+  setQuizAsComplete,
+} from "./actions";
 
 const App = () => {
   const [socket, setSocket] = useState();
@@ -15,6 +22,9 @@ const App = () => {
 
   useEffect(() => {
     const newSocket = io(URL);
+    newSocket.on("change state", (state) => {
+      dispatch(changeState(state));
+    });
     dispatch(storeSocket(newSocket));
     setSocket(newSocket);
   }, []);

@@ -1,7 +1,7 @@
 const initState = {
   quizState: {},
   socket: {},
-  player: "",
+  player: ""
 };
 
 const quizzlyReducer = (state = initState, action) => {
