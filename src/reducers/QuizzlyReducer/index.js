@@ -22,7 +22,7 @@ const quizzlyReducer = (state = initState, action) => {
           ...state.quizState, users: allUsers,
         },
       };
-    case 'START_GAME':
+    case 'START_QUIZ':
       return {
         ...state,
         quizState: {

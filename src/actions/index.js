@@ -28,9 +28,10 @@ const addUser = (user) => {
     }
 }
 
-const startGame = () => {
+// Start game
+const startQuiz = () => { 
     return {
-        type: 'START_GAME',
+        type: 'START_QUIZ',
     }
 }
-export { storeSocket, changeState, storeUser, addUser, startGame };
+export { storeSocket, changeState, storeUser, addUser, startQuiz };

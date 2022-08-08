@@ -54,7 +54,6 @@ export default function CreateGame() {
 
     async function getQuestions(cat, diff) {
         const url = `https://opentdb.com/api.php?amount=10&category=${categoryMap[cat]}&difficulty=${diff}&type=multiple`;
-        console.log(url)
         const { data } = await axios.get(url);
         return data.results;
     }
