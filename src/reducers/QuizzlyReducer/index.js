@@ -1,30 +1,35 @@
 const initState = {
-  gameState: {},
+  quizState: {},
   socket: {},
-  user: "",
+  player: "",
 };
 
 const quizzlyReducer = (state = initState, action) => {
   switch (action.type) {
     case "CHANGE_STATE":
-      return { ...state, gameState: action.payload };
+      return { ...state, quizState: action.payload };
     case "STORE_SOCKET":
       return { ...state, socket: action.payload };
-      case 'STORE_USER':
-        return {
-            ...state,
-            user: action.payload
-        };
+    case 'STORE_USER':
+      return {
+        ...state, player: action.payload
+      };
     case "ADD_USER":
-      let allUsers = [...state.gameState.users];
+      let allUsers = [...state.quizState.users];
       allUsers.push({ name: action.payload, score: 0, completed: false });
       return {
-        ...state,
-        gameState: {
-          ...state.gameState,
-          users: allUsers,
+        ...state, quizState: {
+          ...state.quizState, users: allUsers,
         },
       };
+    case 'START_GAME':
+      return {
+        ...state,
+        quizState: {
+          ...state.quizState,
+          gameStarted: true
+        }
+      }
     default:
       return state;
   }

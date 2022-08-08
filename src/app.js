@@ -9,6 +9,9 @@ const URL = "http://localhost:3000";
 const App = () => {
   const [socket, setSocket] = useState();
   const dispatch = useDispatch();
+  const currentUser = useSelector((state) => state.user);
+  const host = useSelector((state) => state.quizState.host);
+  const quizState = useSelector((state) => state.quizState);
 
   useEffect(() => {
     const newSocket = io(URL);
@@ -21,17 +24,17 @@ const App = () => {
       socket.on("user joining lobby", (user) => {
         if (currentUser === host) {
         dispatch(addUser(user));
-        let newGame = { ...gameState };
-        gameState.users.push({
+        let newGame = { ...quizState };
+        quizState.users.push({
           new: user,
           score: 0,
           completed: false
         })
-        socket.emit("send state to players", newGameState);
+        socket.emit("send state to players", newGame);
       }
     })
   }
-}, [socket, clientUser, host]);
+}, [socket, currentUser, host]);
 
 
   return (

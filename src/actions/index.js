@@ -27,4 +27,10 @@ const addUser = (user) => {
         payload: user
     }
 }
-export {storeSocket, changeState, storeUser, addUser};
+
+const startGame = () => {
+    return {
+        type: 'START_GAME',
+    }
+}
+export { storeSocket, changeState, storeUser, addUser, startGame };
