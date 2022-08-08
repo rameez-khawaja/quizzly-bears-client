@@ -16,6 +16,23 @@ const App = () => {
     setSocket(newSocket);
   }, []);
 
+  useEffect(() => {
+    if (socket) {
+      socket.on("user joining lobby", (user) => {
+        if (currentUser === host) {
+        dispatch(addUser(user));
+        let newGame = { ...gameState };
+        gameState.users.push({
+          new: user,
+          score: 0,
+          completed: false
+        })
+        socket.emit("send state to players", newGameState);
+      }
+    })
+  }
+}, [socket, clientUser, host]);
+
 
   return (
     <Switch>
@@ -28,11 +45,11 @@ const App = () => {
       <Route path="/play">
         <Game />
       </Route>
-      <Route path="/highscores">
-        <HighScores />
-      </Route>
       <Route path="/results">
         <Results />
+      </Route>
+      <Route path="/highscores">
+        <HighScores />
       </Route>
     </Switch>
   );

@@ -1,3 +1,5 @@
+
+
 const storeSocket = (socket) => {
     return {
         type: 'STORE_SOCKET',
@@ -5,4 +7,24 @@ const storeSocket = (socket) => {
     }
 }
 
-export {storeSocket};
+const changeState = (data) => {
+    return {
+        type: 'CHANGE_GAME_STATE',
+        payload: data
+    }
+}
+
+const storeUser = (user) => {
+    return {
+        type: 'STORE_USER',
+        payload: user
+    }
+}
+
+const addUser = (user) => {
+    return {
+        type: 'ADD_USER',
+        payload: user
+    }
+}
+export {storeSocket, changeState, storeUser, addUser};
