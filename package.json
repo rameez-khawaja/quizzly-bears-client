@@ -1,0 +1,47 @@
+{
+  "name": "quizzly-bears-client",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "webpack-cli serve --mode development --config config/webpack.config.dev.js",
+    "start": "webpack-cli serve --mode development --config config/webpack.config.dev.js",
+    "build": "webpack --config config/webpack.config.production.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@testing-library/jest-dom": "^5.14.1",
+    "@testing-library/react": "^12.0.0",
+    "@testing-library/user-event": "^13.2.1",
+    "babel-jest": "^27.0.6",
+    "babel-loader": "^8.2.2",
+    "css-loader": "^6.2.0",
+    "html-webpack-plugin": "^5.3.2",
+    "jest": "^27.0.6",
+    "style-loader": "^3.2.1",
+    "webpack": "^5.50.0",
+    "webpack-cli": "^4.7.2",
+    "webpack-dev-server": "^4.9.3"
+  },
+  "dependencies": {
+    "@babel/core": "^7.15.0",
+    "@babel/plugin-transform-runtime": "^7.15.0",
+    "@babel/preset-env": "^7.15.0",
+    "@babel/preset-react": "^7.14.5",
+    "@material-ui/core": "^4.12.3",
+    "@reduxjs/toolkit": "^1.8.3",
+    "axios": "^0.21.1",
+    "emoji-picker-react": "^3.6.0",
+    "he": "^1.2.0",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
+    "react-redux": "^7.2.4",
+    "react-router-dom": "^5.2.0",
+    "react-scroll-to-bottom": "^4.2.0",
+    "redux": "^4.1.1",
+    "redux-devtools-extension": "^2.13.9",
+    "socket.io-client": "^4.1.3"
+  }
+}
