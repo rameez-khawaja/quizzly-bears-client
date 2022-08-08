@@ -23,27 +23,27 @@ const App = () => {
     if (socket) {
       socket.on("user joining lobby", (user) => {
         if (currentUser === host) {
-        dispatch(addUser(user));
-        let newGame = { ...quizState };
-        quizState.users.push({
-          new: user,
-          score: 0,
-          completed: false
-        })
-        socket.emit("send state to players", newGame);
-      }
-    })
-  }
-}, [socket, currentUser, host]);
+          dispatch(addUser(user));
+          let newGame = { ...quizState };
+          quizState.users.push({
+            new: user,
+            score: 0,
+            completed: false
+          })
+          socket.emit("send state to players", newGame);
+        }
+      })
+    }
+  }, [socket, currentUser, host]);
 
 
   return (
     <Routes>
-      <Route exact path="/" element={<Home />}/>
-      <Route path="/lobby" element={<Lobby />}/>
-      <Route path="/play" element={<Game />}/>
-      <Route path="/results" element={<Results />}/>
-      <Route path="/highscores" element={<HighScores />}/>
+      <Route exact path="/" element={<Home />} />
+      <Route path="/lobby" element={<Lobby />} />
+      <Route path="/play" element={<Game />} />
+      <Route path="/results" element={<Results />} />
+      <Route path="/highscores" element={<HighScores />} />
     </Routes>
   );
 }
