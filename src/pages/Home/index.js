@@ -5,6 +5,7 @@ import { Modal } from '@material-ui/core';
 import { storeUser } from "../../actions";
 import { Navigate } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
+import './styles.css'
 
 
 const Home = () => {
@@ -47,14 +48,16 @@ const Home = () => {
 
 
     return (
-<>
+<section className="container pb-3 d-flex flex-column">
+    <div  className="parent"       style={{height: 250}}>
+        <div className="child">
         <motion.h1
         className='title'
         initial={{ opacity: 0, scale: 0.5 }}
-        animate={{ opacity: 1, scale: 1 }}
+        animate={{ opacity: 1, scale: 0.7 }}
         exit={{ opacity: 0, scale: 0, x: "-100vh"}}
-        whileHover={{ scale: 1.05 }}
-        whileTap={{ scale: 0.95 }}
+        whileHover={{ scale: 0.8 }}
+        whileTap={{ scale: 0.75 }}
         transition={{
           default: {
             duration: 0.3,
@@ -69,11 +72,12 @@ const Home = () => {
         }}
       >Ready To Quiz?
       </motion.h1>
-
-        <div className="container col-lg-6 col-xl-6 col-sm-10 px-xl-5" id="landingPageDiv">
-            <div className="outer-container">
-                <div className="container col-6 text-center">
-                    <motion.div className="card mt-5"
+      </div>
+      </div>
+        <div className="container col-lg-4 col-md-6 col-sm-10 col-12" id="landingPageDiv">
+            <div>
+                <div className="container text-center">
+                    <motion.div className="card p-1"
                     initial={{ opacity: 0, scale: 0.5 }}
                     animate={{ opacity: 1, scale: 1 }}
                     whileHover={{ scale: 1.05 }}
@@ -139,7 +143,7 @@ const Home = () => {
                                         <input label="Game ID" onChange={handleLobbyCode} value={lobbyCode} placeholder="Room ID" className="input-group-text border border-primary m-1 w-100" />
 
                                     </motion.div>
-                                    <motion.div className="create-input"
+                                    <motion.div className="create-input  p-1"
                                     initial={{ opacity: 0, scale: 0.5 }}
                                     animate={{ opacity: 1, scale: 1 }}
                                     whileHover={{ scale: 1.05 }}
@@ -169,7 +173,7 @@ const Home = () => {
 
                             <span className="display-5">OR</span>
                             {/* Create Game Button */}
-                            <motion.button onClick={handleCreateGameModal} className="btn btn-success my-1"
+                            <motion.button onClick={handleCreateGameModal} className="btn btn-success my-1 mx-1"
                             initial={{ opacity: 0, scale: 0.5 }}
                             animate={{ opacity: 1, scale: 1 }}
                             whileHover={{ scale: 1.05 }}
@@ -196,7 +200,7 @@ const Home = () => {
                 </div>
             </div>
         </div>
-        </>
+        </section>
     )
 }
 

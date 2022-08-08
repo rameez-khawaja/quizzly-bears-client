@@ -82,9 +82,10 @@ export default function CreateGame() {
     const dropdownItems = Object.keys(categoryMap).map(item => <option key={item} value={item}>{item}</option>)
 
     return (
-        <section className='col-lg-6 col-10 mx-auto pt-5 mt-5'>
-            <div className='container bg-light card text-center col-md-8 mt-5 py-5'>
-                <form onSubmit={handleFormSubmit} className="card pb-2 col-md-8 mx-auto">
+
+        <section className='col-12 pt-5 mt-5 position-absolute top-50 start-50 translate-middle w-auto'>
+            <div className='container bg-light card text-center py-3 col-lg-4 col-md-6 col-sm-8 col-12 w-auto'>
+                <form onSubmit={handleFormSubmit} className="card pb-2">
                     <div className='py-2'>
                         <label>Username:</label>
                         <input label='Username' placeholder="Username" onChange={handleUsername} value={username} className="form-control border-secondary my-2 w-75 mx-auto" />
