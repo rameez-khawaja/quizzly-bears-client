@@ -5,9 +5,11 @@ import { startQuiz } from "../../actions";
 import { Chat } from "../../components";
 
 const Lobby = () => {
+    const state = useSelector((state) => state);
     const data = useSelector((state) => state.quizState);
     const user = useSelector((state) => state.player);
     const socket = useSelector((state) => state.socket);
+    console.log(state)
 
     console.log(data)
 
