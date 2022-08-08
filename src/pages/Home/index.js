@@ -90,11 +90,6 @@ const Home = () => {
                                 <CreateGame />
                             </div>
                         </Modal>
-
-                        <div className="create-modal-container">
-                            <JoinGame />
-                        </div>
-
                     </div>
                 </div>
             </div>
