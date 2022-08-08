@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { storeUser } from "../../actions";
 import axios from "axios";
 import { Navigate } from "react-router-dom";
+import { motion } from 'framer-motion';
 
 const categoryMap = {
     "General Knowledge": 9,
@@ -83,7 +84,7 @@ export default function CreateGame() {
 
     return (
 
-        <section className='col-12 pt-5 mt-5 position-absolute top-50 start-50 translate-middle w-auto'>
+        <section className='col-12 pt-5 mt-5 w-auto'>
             <div className='container bg-light card text-center py-3 col-lg-4 col-md-6 col-sm-8 col-12 w-auto'>
                 <form onSubmit={handleFormSubmit} className="card pb-2">
                     <div className='py-2'>
@@ -109,7 +110,23 @@ export default function CreateGame() {
                     </div>
 
                     <div className='create-input'>
-                        <button className="btn btn-primary my-2" type="submit" variant="outlined" color="primary">Create Game</button>
+                    <motion.button className="btn btn-primary my-2"
+                    type="submit"
+                            initial={{ opacity: 0, scale: 0.5 }}
+                            animate={{ opacity: 1, scale: 1 }}
+                            whileHover={{ scale: 1.05 }}
+                            transition={{
+                                default: {
+                                    duration: 0.3,
+                                    ease: [0, 0.71, 0.2, 1.01],
+                                },
+                                scale: {
+                                    type: "spring",
+                                    damping: 10,
+                                    stiffness: 400,
+                                    restDelta: 0.001
+                                }
+                            }}>Create Game</motion.button>
                     </div>
                 </form>
                 {checkForm && <Navigate to='/lobby' />}

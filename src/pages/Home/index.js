@@ -6,6 +6,28 @@ import { storeUser } from "../../actions";
 import { Navigate } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import './styles.css'
+import Backdrop from './Backdrop'
+const dropIn = {
+    hidden: {
+      y: "-100vh",
+      opacity: 0,
+    },
+    visible: {
+      y: "0",
+      opacity: 1,
+      transition: {
+        duration: 0.1,
+        type: "spring",
+        damping: 30,
+        stiffness: 500,
+      },
+    },
+    exit: {
+      y: "100vh",
+      opacity: 0,
+    },
+  };
+
 
 
 const Home = () => {
@@ -191,11 +213,22 @@ const Home = () => {
                             }}>Create Game</motion.button>
 
                         </div>
-                        <Modal open={createGame} onClose={handleCloseGameModal} className="chooseGameModal">
-                            <div className="create-modal-container">
+                        <Backdrop onClick={handleCloseGameModal}>
+                        <Modal open={createGame} className="mx-auto col-lg-4 col-md-6 col-sm-8 col-12 " style={{top:250}}>
+                            <motion.div
+                            variants={dropIn}
+                            onClick={(e) => e.stopPropagation()}
+          initial="hidden"
+          animate="visible"
+          exit="exit"
+
+          whileHover={{ scale: 1.05 }}
+
+                            >
                                 <CreateGame />
-                            </div>
+                            </motion.div>
                         </Modal>
+                        </Backdrop>
                     </motion.div>
                 </div>
             </div>
