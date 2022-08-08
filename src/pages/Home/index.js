@@ -3,8 +3,8 @@ import { Redirect } from 'react-router-dom';
 import { Modal } from '@material-ui/core';
 import { useSelector, useDispatch } from "react-redux";
 
-const Game = () => {
-    return <div>Game loads</div>
+const Home = () => {
+    return <div>Home loads</div>
 }
 
-export default Game;
+export default Home;

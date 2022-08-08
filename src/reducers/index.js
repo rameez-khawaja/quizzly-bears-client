@@ -1,1 +1,1 @@
-export { default as QuizzlyReducer } from "./QuizzlyReducer";
+export { default as quizzlyReducer } from "./quizzlyReducer";
