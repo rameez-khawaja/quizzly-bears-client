@@ -191,7 +191,7 @@ const Home = () => {
                             }}>Create Game</motion.button>
 
                         </div>
-                        <Modal open={createGame} onClose={handleCloseGameModal}>
+                        <Modal open={createGame} onClose={handleCloseGameModal} className="chooseGameModal">
                             <div className="create-modal-container">
                                 <CreateGame />
                             </div>
