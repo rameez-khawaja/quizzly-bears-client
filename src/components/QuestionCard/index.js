@@ -29,22 +29,24 @@ export default function QuestionCard({ questionDetails, questionNumber }) {
       questionArray.push(incorrect_answers[i])
     }
 
-    for(let i=questionArray.length-1; i>0; i--) {
-      let j = Math.floor(Math.random()*(i+1))
+    for (let i = questionArray.length - 1; i > 0; i--) {
+      let j = Math.floor(Math.random() * (i + 1))
       let tempItem = questionArray[i]
-      questionArray[i]=questionArray[j]
+      questionArray[i] = questionArray[j]
       questionArray[j] = tempItem
     }
     setRandomArray(questionArray)
   }, [question]);
 
   const questionsToLoad = randomArray.map(q =>
-    <div className="card m-2" style={{ width: '120px' }} key={Math.random()}>
+    <div className='col-md-6 mb-3 justify-content-center'>
+      <div className="card m-2 " style={{ width: '120px' }} key={Math.random()}>
         <div className="card-body">
-            <h5 className="card-title">{q}</h5>
+          <h5 className="card-title">{q}</h5>
         </div>
+      </div>
     </div>
-)
+  )
 
   return (
     <div>
@@ -54,7 +56,13 @@ export default function QuestionCard({ questionDetails, questionNumber }) {
       </div>
       <div className='card'>
         <h2>Question: {he.decode(question)}</h2>
-        <div>{questionsToLoad}</div>
+        <div className="container mt-4" >
+          <div className="row d-flex justify-content-center">
+
+            {questionsToLoad}
+
+          </div>
+        </div>
       </div>
     </div>
   )
