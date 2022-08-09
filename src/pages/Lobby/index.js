@@ -74,7 +74,7 @@ console.log(data)
                                 <p className="my-auto mx-auto border-bottom border-dark">Difficulty: {data.difficulty}</p>
                             </div>
                             </div>
-                            <section className="row py-4">
+                            <section className="row flex-lg-row py-4">
 
                             <section className="col-5 d-flex flex-row justify-content-center">
                                 <div id="message-container"></div>
@@ -114,7 +114,7 @@ console.log(data)
                                         key={user.name}
                                         initial={{ opacity: 0, scale: 0.5 }}
                                         animate={{ opacity: 1, scale: 1 }}
-                                        style={{backgroundColor: color, left: "-20px"}}
+                                        style={{backgroundColor: color}}
                                         whileHover={{ scale: 1.15 }}
                                         whileTap={{ scale: 0.85 }}
                                         transition={{
