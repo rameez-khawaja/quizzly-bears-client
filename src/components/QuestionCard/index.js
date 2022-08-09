@@ -4,16 +4,13 @@ import { Navigate } from 'react-router-dom';
 import he from 'he';
 
 
-export default function QuestionCard({ question }) {
+export default function QuestionCard({ questions }) {
+  const quizState = useSelector((state) => state.quizState)
+  const socket = useSelector((state) => state.socket)
+  const player = useSelector((state) => state.player)
+  const { question, category, difficulty, correct_answer, incorrect_answers } = questions
 
-  console.log(question)
 
-  const { category, difficulty, correct_answer, incorrect_answers } = question
-
-  // console.log(category)
-  // console.log(difficulty)
-  // console.log(correct_answer)
-  // console.log(incorrect_answers)
 
   return (
     <div>"Ich bin eine Question card"</div>
