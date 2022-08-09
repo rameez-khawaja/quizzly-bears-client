@@ -35,15 +35,24 @@ const startQuiz = () => {
 
 const quizFinished = (user) => {
     return {
-        type: 'COMPLETE_QUIZ',
+        type: 'FINISHED_QUIZ',
         payload: user
     }
 }
 
-const incrementQuestionNumber = () => {
+const increaseQuestionNumber = () => {
     return {
-        type: 'INCREMENT_QUESTION'
+        type: 'INCREASE_QUESTION_NUMBER'
     }
 }
 
-export { storeSocket, changeState, storeUser, addUser, startQuiz, quizFinished, incrementQuestionNumber };
+const increaseScore = (user, score) => {
+    return {
+        type: 'INCREASE_SCORE',
+        "user": user,
+        "score": score
+    }
+}
+
+export { storeSocket, changeState, storeUser, addUser, startQuiz, quizFinished, increaseQuestionNumber, increaseScore };
+

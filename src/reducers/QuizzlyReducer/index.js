@@ -30,6 +30,20 @@ const quizzlyReducer = (state = initState, action) => {
           gameStarted: true
         }
       }
+    case 'INCREASE_QUESTION_NUMBER':
+      let newQuestionNumber = state.quizState.questionNumber + 1;
+      return {
+        ...state,
+        quizState: { ...state.quizState, questionNumber: newQuestionNumber }
+      };
+    case 'INCREASE_SCORE':
+      let newUsers = [...state.quizState.users];
+      let userIndex = newUsers.findIndex(item => item.name === action.player);
+      newUsers[userIndex].score += action.score;
+      return {
+        ...state,
+        gameState: { ...state.gameState, users: newUsers }
+      };
     default:
       return state;
   }

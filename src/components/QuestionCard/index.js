@@ -1,23 +1,27 @@
 import React, { useState, useEffect } from 'react';
 import { useSelector, useDispach } from 'react-redux';
+import { Col, Row, Container } from 'react-bootstrap';
+import { motion } from 'framer-motion';
 import { Navigate } from 'react-router-dom';
 import he from 'he';
-import { incrementQuestionNumber } from '../../actions';
+import { increaseQuestionNumber } from '../../actions';
 
 
 export default function QuestionCard({ questionDetails, questionNumber }) {
+
 
   const [randomArray, setRandomArray] = useState([])
   const quizState = useSelector((state) => state.quizState)
   const socket = useSelector((state) => state.socket)
   const player = useSelector((state) => state.player)
 
-  console.log(quizState)
+
 
   const [gameFinished, setGameFinished] = useState(false);
   const [timerCount, setTimerCount] = useState(30)
   const [selectAnswer, setSelectAnswer] = useState('')
   const { question, category, difficulty, correct_answer, incorrect_answers } = questionDetails
+
 
 
   useEffect(() => {
@@ -43,7 +47,7 @@ export default function QuestionCard({ questionDetails, questionNumber }) {
 
   useEffect(() => {
     if (quizState.questionNumber <= 10) {
-      dispatchEvent(incrementQuestionNumber())
+      dispatch(increaseQuestionNumber())
       setTimerCount(30)
     } else {
       console.log('Game Over')
@@ -54,19 +58,20 @@ export default function QuestionCard({ questionDetails, questionNumber }) {
   function submitAnswer(e) {
     e.preventDefault();
     if (quizState.questionNumber <= 10) {
-      dispatch(incrementQuestionNumber());
+      dispatch(increaseQuestionNumber());
       setCounter(30);
     } else {
       console.log('Game Over');
       setIsGameOver(true);
     }
 
-    if (selectedOption === correct_answer && gameState.questionNumber <= 10) {
-      let score = 100 + (2 * counter);
-      dispatch(updateScore(clientUser, score));
-      socket.emit('update player score', { room: gameState.roomName, user: clientUser, score })
-    };
+    if (selectAnswer === correct_answer && quizState.questionNumber <= 10) {
+      let score = 50 + (2.5 * counter)
+      dispatch(increaseScore(player, score))
+      socket.emit('update player score', { room: quizState.room, user: player, score })
+    }
   }
+
 
 
   const questionsToLoad = randomArray.map(q =>
@@ -76,8 +81,7 @@ export default function QuestionCard({ questionDetails, questionNumber }) {
           <h5 className="card-title">{he.decode(q)}</h5>
         </div>
       </div>
-    </div>
-  )
+    </div>)
 
   return (
     <div>
@@ -90,12 +94,35 @@ export default function QuestionCard({ questionDetails, questionNumber }) {
       </div>
       <div className="container mt-4" >
         <div className="row d-flex justify-content-center">
+          {he.decode(questionsToLoad)}
           <form onSubmit={submitAnswer}>
             <input value={selectAnswer} onChange={handleChange} />
           </form>
           <button type="submit">Submit</button>
         </div>
       </div>
+
     </div>
   )
 }
+
+
+
+
+
+// <motion.div
+// initial={{ opacity: 0, scale: 0.5 }}
+// animate={{ opacity: 1, scale: 1 }}
+// whileHover={{ scale: 1.05 }}
+// transition={{
+//     default: {
+//         duration: 0.3,
+//         ease: [0, 0.71, 0.2, 1.01],
+//     },
+//     scale: {
+//         type: "spring",
+//         damping: 10,
+//         stiffness: 400,
+//         restDelta: 0.001
+//     }
+// }}
