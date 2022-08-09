@@ -5,7 +5,6 @@ import { useSelector, useDispatch } from "react-redux";
 
 const Game = () => {
     const state = useSelector(state => state.quizState.questionNumber);
-    console.log(state)
     return <div>Game loads</div>
 }
 

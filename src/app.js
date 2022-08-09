@@ -21,7 +21,7 @@ const App = () => {
   const host = useSelector((state) => state.quizState.host);
   const quizState = useSelector((state) => state.quizState);
 
-  console.log(currentUser)
+ 
 
   useEffect(() => {
     const newSocket = io(URL);

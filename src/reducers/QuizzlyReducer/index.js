@@ -5,6 +5,8 @@ const initState = {
 };
 
 const quizzlyReducer = (state = initState, action) => {
+  console.log(state)
+
   switch (action.type) {
     case "CHANGE_STATE":
       return { ...state, quizState: action.payload };
@@ -33,6 +35,10 @@ const quizzlyReducer = (state = initState, action) => {
     default:
       return state;
   }
+
 };
+
+
+
 
 export default quizzlyReducer;
