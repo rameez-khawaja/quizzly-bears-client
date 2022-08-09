@@ -11,7 +11,7 @@ import {
   storeSocket,
   addUser,
   updateScore,
-  setQuizAsComplete,
+  quizFinished,
 } from "./actions";
 
 const App = () => {
@@ -21,13 +21,18 @@ const App = () => {
   const host = useSelector((state) => state.quizState.host);
   const quizState = useSelector((state) => state.quizState);
 
- 
 
   useEffect(() => {
     const newSocket = io(URL);
+
     newSocket.on("change state", (state) => {
       dispatch(changeState(state));
     });
+
+    newSocket.on("update opponent completion", (user) => {
+      dispatch(quizFinished(user));
+    });
+
     dispatch(storeSocket(newSocket));
     setSocket(newSocket);
   }, []);

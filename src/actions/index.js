@@ -27,9 +27,17 @@ const addUser = (user) => {
 }
 
 // Start game
-const startQuiz = () => { 
+const startQuiz = () => {
     return {
         type: 'START_QUIZ',
     }
 }
-export { storeSocket, changeState, storeUser, addUser, startQuiz };
+
+const quizFinished = (user) => {
+    return {
+        type: 'COMPLETE_QUIZ',
+        payload: user
+    }
+}
+
+export { storeSocket, changeState, storeUser, addUser, startQuiz, quizFinished };
