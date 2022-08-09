@@ -30,7 +30,7 @@ const Game = () => {
             <section>
                 {questionNumber <= 10 && (
                     <div>
-                        <QuestionCard allQuestions={allQuestions[questionNumber - 1]} />
+                        <QuestionCard question={allQuestions[questionNumber - 1]} />
                     </div>
                 )}
                 <div className="d-flex justify-content-center">
