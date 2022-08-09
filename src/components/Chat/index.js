@@ -4,7 +4,7 @@ import "./style.css";
 // import Picker from 'emoji-picker-react';
 
 function Chat({ socket, username, room }) {
-  console.log(room, socket, username);
+  // console.log(room, socket, username);
   const [currentMessage, setCurrentMessage] = useState("");
   const [messageList, setMessageList] = useState([]);
   const [chosenEmoji, setChosenEmoji] = useState(null);
@@ -42,7 +42,7 @@ function Chat({ socket, username, room }) {
   return (
     <div className="chat-window card border-primary shadow">
       <div className="chat border-bottom border-primary text-primary">
-      Chat <i class="fa-solid fa-comment-dots"></i>
+      Chat <i className="fa-solid fa-comment-dots"></i>
             </div>
       <div className="chat-body">
         <ScrollToBottom className="message-container">
@@ -79,7 +79,7 @@ function Chat({ socket, username, room }) {
             event.key === "Enter" && sendMessage();
           }}
           className="w-100" />
-        <button class="btn btn-primary" onClick={sendMessage}>Submit</button>
+        <button className="btn btn-primary" onClick={sendMessage}>Submit</button>
       </div>
     </div>
   );
