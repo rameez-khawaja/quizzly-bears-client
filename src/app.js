@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { Routes, Route } from "react-router-dom";
 const io = require("socket.io-client");
 const URL = "http://localhost:3000";
+import './App.css'
 
 import {
   changeState,

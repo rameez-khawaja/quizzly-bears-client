@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useState, useEffect, useRef } from 'react';
+import { Modal } from '@material-ui/core';
 import { useSelector, useDispatch } from "react-redux";
 import { Navigate } from "react-router-dom";
 import { startQuiz } from "../../actions";
