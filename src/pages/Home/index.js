@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { CreateGame, JoinGame } from '../../components';
+import { CreateGame } from '../../components';
 import { useSelector, useDispatch } from "react-redux";
 import { Modal } from '@material-ui/core';
 import { storeUser } from "../../actions";

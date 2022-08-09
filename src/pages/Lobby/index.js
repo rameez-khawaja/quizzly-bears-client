@@ -10,7 +10,7 @@ const Lobby = () => {
     const data = useSelector((state) => state.quizState);
     const user = useSelector((state) => state.player);
     const socket = useSelector((state) => state.socket);
-    
+
     console.log(state)
 
     console.log(data)
@@ -90,7 +90,7 @@ const Lobby = () => {
                     {console.log(data)}
                 </div>
             )}
-            {data.gameStarted && <Navigate to="/game" />}
+            {data.gameStarted && <Navigate to="/play" />}
         </section>
     )
 }
