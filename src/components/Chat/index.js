@@ -49,6 +49,7 @@ function Chat({ socket, username, room }) {
           {messageList.map((messageContent) => {
             return (
               <div
+                key={Math.random()}
                 className="message"
                 id={username === messageContent.author ? "you" : "other"}
               >
