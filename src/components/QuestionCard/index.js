@@ -1,7 +1,22 @@
 import React, { useState, useEffect } from 'react';
 import { useSelector, useDispach } from 'react-redux';
+import { Col, Row, Container } from 'react-bootstrap';
 import { Navigate } from 'react-router-dom';
 import he from 'he';
+
+<Container>
+  <Row>
+    <Col></Col>
+  </Row>
+  <Row>
+    <Col></Col>
+    <Col></Col>
+  </Row>
+  <Row>
+    <Col></Col>
+    <Col></Col>
+  </Row>
+</Container>
 
 
 export default function QuestionCard({ questionDetails, questionNumber }) {
@@ -38,13 +53,11 @@ export default function QuestionCard({ questionDetails, questionNumber }) {
     setRandomArray(questionArray)
   }, [question]);
 
-  const questionsToLoad = randomArray.map(q =>
-    <div className="card m-2" style={{ width: '120px' }} key={Math.random()}>
-        <div className="card-body">
-            <h5 className="card-title">{q}</h5>
-        </div>
-    </div>
-)
+//   const questionsToLoad = randomArray.map((q, index) =>
+//         <Row className="answercard">
+//             <Col className={"answer" + (index + 1)}>{q}</Col>
+//         </Row>
+// )
 
   return (
     <div>
@@ -52,10 +65,37 @@ export default function QuestionCard({ questionDetails, questionNumber }) {
         <h2>Category: {he.decode(category)}</h2>
         <h2>{questionNumber}/10</h2>
       </div>
-      <div className='card'>
-        <h2>Question: {he.decode(question)}</h2>
-        <div>{questionsToLoad}</div>
-      </div>
+      <Row className='questioncard'>
+        <Col>Question: {he.decode(question)}</Col>
+      </Row>
+      <Container>
+        <Row className='seperator'>
+          <Col className="answercard">{randomArray[0]}</Col>
+          <Col className="answercard">{randomArray[1]}</Col>
+        </Row>
+        <Row className='seperatorb'>
+          <Col className="answercard">{randomArray[2]}</Col>
+          <Col className="answercard">{randomArray[3]}</Col>
+        </Row>
+      </Container>
     </div>
   )
 }
+
+
+// const questionNumber = useSelector((state) => state.quizState.questionNumber);
+//   const allQuestions = useSelector((state) => state.quizState.questions);
+//   console.log(allQuestions[questionNumber-1])
+
+//   return (
+//     <section>
+//       <section>
+//         {questionNumber <= 10 && (
+//           <div>
+//             <QuestionCard allQuestions={allQuestions[questionNumber-1]} />
+//           </div>
+//         )}
+//       </section>
+//       {questionNumber > 10 && <Navigate to="/results" />}
+//     </section>
+//   );
