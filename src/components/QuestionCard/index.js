@@ -73,7 +73,7 @@ export default function QuestionCard({ questionDetails, questionNumber }) {
           <Col className="answercard">{randomArray[0]}</Col>
           <Col className="answercard">{randomArray[1]}</Col>
         </Row>
-        <Row className='seperatorb'>
+        <Row className='seperator'>
           <Col className="answercard">{randomArray[2]}</Col>
           <Col className="answercard">{randomArray[3]}</Col>
         </Row>

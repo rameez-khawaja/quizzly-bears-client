@@ -45,6 +45,11 @@ body {
     user-select: none;
 }
 
+.card-body {
+    color: white;
+    font-family: "Lol";
+}
+
 .card {
     margin: auto;
     backdrop-filter: blur(16px) saturate(180%);
@@ -96,11 +101,6 @@ body {
   }
 
   .seperator {
-    display: flex;
-    justify-content: center;
-  }
-
-  .seperatorb {
     display: flex;
     justify-content: center;
   }
