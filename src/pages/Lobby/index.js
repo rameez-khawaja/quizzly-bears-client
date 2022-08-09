@@ -3,13 +3,13 @@ import { useSelector, useDispatch } from "react-redux";
 import { Navigate } from "react-router-dom";
 import { startQuiz } from "../../actions";
 import { Chat } from "../../components";
-import {motion} from 'framer-motion'
+import { motion } from 'framer-motion'
 
 const Lobby = () => {
     const data = useSelector((state) => state.quizState);
     const user = useSelector((state) => state.player);
     const socket = useSelector((state) => state.socket);
-console.log(data)
+    console.log(data)
     const dispatch = useDispatch();
 
     const colors = ["lightred", "lightgreen", "lightblue", "orange", "yellow", "pink"];
@@ -29,89 +29,89 @@ console.log(data)
                 <div className="container text-center bg-transparent">
                     <div className="container d-flex justify-content-center bg-transparent">
                         <motion.div className="py-2 text-center col-8 mx-auto"
-                                        initial={{ opacity: 0, scale: 0.5 }}
-                                        animate={{ opacity: 1, scale: 1 }}
-                                        whileHover={{ scale: 1.05 }}
-                                        transition={{
-                                            default: {
-                                                duration: 0.3,
-                                                ease: [0, 0.71, 0.2, 1.01],
-                                            },
-                                            scale: {
-                                                type: "spring",
-                                                damping: 10,
-                                                stiffness: 400,
-                                                restDelta: 0.001
-                                            }
-                                        }}>
+                            initial={{ opacity: 0, scale: 0.5 }}
+                            animate={{ opacity: 1, scale: 1 }}
+                            whileHover={{ scale: 1.05 }}
+                            transition={{
+                                default: {
+                                    duration: 0.3,
+                                    ease: [0, 0.71, 0.2, 1.01],
+                                },
+                                scale: {
+                                    type: "spring",
+                                    damping: 10,
+                                    stiffness: 400,
+                                    restDelta: 0.001
+                                }
+                            }}>
                             <div className="py-2 text-center col-8 mx-auto shadow border border-primary bg-light rounded">
-                            <motion.div className="display-4 player-title"
-                                        initial={{ opacity: 0, scale: 0.5 }}
-                                        animate={{ opacity: 1, scale: 1 }}
-                                        whileHover={{ scale: 1.05 }}
-                                        transition={{
-                                            default: {
-                                                duration: 0.3,
-                                                ease: [0, 0.71, 0.2, 1.01],
-                                            },
-                                            scale: {
-                                                type: "spring",
-                                                damping: 10,
-                                                stiffness: 400,
-                                                restDelta: 0.001
-                                            }
-                                        }}>
+                                <motion.div className="display-4 player-title"
+                                    initial={{ opacity: 0, scale: 0.5 }}
+                                    animate={{ opacity: 1, scale: 1 }}
+                                    whileHover={{ scale: 1.05 }}
+                                    transition={{
+                                        default: {
+                                            duration: 0.3,
+                                            ease: [0, 0.71, 0.2, 1.01],
+                                        },
+                                        scale: {
+                                            type: "spring",
+                                            damping: 10,
+                                            stiffness: 400,
+                                            restDelta: 0.001
+                                        }
+                                    }}>
                                     {data.host}'s Quizzly Game!{" "}
                                 </motion.div>
                                 <h2 className="text-primary">Waiting for all players...</h2>
                                 <div className="d-flex flex-column justify-content-center mt-2">
-                                <p className="my-auto mx-auto border-bottom border-dark">Questions: 10</p>
-                                <p className="my-auto mx-auto border-bottom border-dark">Category: {data.category}</p>
-                                <p className="my-auto mx-auto border-bottom border-dark">Difficulty: {data.difficulty}</p>
-                            </div>
+                                    <p className="my-auto mx-auto border-bottom border-dark">Questions: 10</p>
+                                    <p className="my-auto mx-auto border-bottom border-dark">Category: {data.category}</p>
+                                    <p className="my-auto mx-auto border-bottom border-dark">Difficulty: {data.difficulty}</p>
+                                </div>
                             </div>
                             <section className="row py-4">
 
-                            <section className="col-5 d-flex flex-row justify-content-center">
-                                <div id="message-container"></div>
-                                <Chat socket={socket} username={user} room={data.room} />
-                            </section>
-                            <div className="col-sm-1"></div>
-                            <div className="col-4 d-flex flex-column">
-                                {data.users.map((user) => {
+                                <section className="col-5 d-flex flex-row justify-content-center">
+                                    <div id="message-container"></div>
+                                    <Chat socket={socket} username={user} room={data.room} />
+                                </section>
+                                <div className="col-sm-1"></div>
+                                <div className="col-4 d-flex flex-column">
+                                    {data.users.map((user) => {
 
-                                    let color = colors[Math.floor(Math.random() * colors.length)];
+                                        let color = colors[Math.floor(Math.random() * colors.length)];
 
-                                    return (
-                                        <motion.div className="card px-1 pt-1"
-                                        initial={{ opacity: 0, scale: 0.5 }}
-                                        animate={{ opacity: 1, scale: 1 }}
-                                        whileHover={{ scale: 1.15 }}
-                                        whileTap={{ scale: 0.85 }}
-                                        transition={{
-                                            default: {
-                                                duration: 0.3,
-                                                ease: [0, 0.71, 0.2, 1.01],
-                                            },
-                                            scale: {
-                                                type: "spring",
-                                                damping: 10,
-                                                stiffness: 200,
-                                                restDelta: 0.001
-                                            }
-                                        }}
+                                        return (
+                                            <motion.div
+                                                initial={{ opacity: 0, scale: 0.5 }}
+                                                animate={{ opacity: 1, scale: 1 }}
+                                                whileHover={{ scale: 1.15 }}
+                                                whileTap={{ scale: 0.85 }}
+                                                transition={{
+                                                    default: {
+                                                        duration: 0.3,
+                                                        ease: [0, 0.71, 0.2, 1.01],
+                                                    },
+                                                    scale: {
+                                                        type: "spring",
+                                                        damping: 10,
+                                                        stiffness: 200,
+                                                        restDelta: 0.001
+                                                    }
+                                                }}
 
-                                            className="card mx-auto border border-dark rounded p-1 m-1 shadow"
-                                            key={user.name}
-                                            style={{ backgroundColor: color }}
-                                        >
-                                            {" "}
+                                                className="card mx-auto border border-dark rounded p-1 m-1 shadow"
+                                                key={user.name}
+                                                style={{ backgroundColor: color }}
+                                            >
+                                                {" "}
 
-                                            <h3><i class="fa-solid fa-person"></i> {user.name}</h3>{" "}
-                                        </motion.div>
-                                    );
-                                })}
-                            </div>
+                                                <h3><i className="fa-solid fa-person"></i> {user.name}</h3>{" "}
+                                            </motion.div>
+                                        );
+                                    })}
+                                </div>
 
                             </section>
                             {data.host === user ? (

@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from 'react';
-import { useSelector, useDispach } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { Col, Row, Container } from 'react-bootstrap';
 import { motion } from 'framer-motion';
 import { Navigate } from 'react-router-dom';
 import he from 'he';
+import { increaseQuestionNumber } from '../../actions';
 
 
 export default function QuestionCard({ questionDetails, questionNumber }) {
@@ -17,13 +18,7 @@ export default function QuestionCard({ questionDetails, questionNumber }) {
   const player = useSelector((state) => state.player)
   const { question, category, difficulty, correct_answer, incorrect_answers } = questionDetails
 
-
-  // Need counter, counter updates state which is reset when user goes to next question (or when timer runs out)
-  // Need a state that manages the option they choose
-  // That state needs to be compared to correct answer
-  // Calculates score with time if answer is correct
-  // Need to check of game is over
-  // Dispatch to increase question number every 30 seconds ( only if Q# < 10 otherwise end game)
+  const dispatch = useDispatch()
 
   useEffect(() => {
     let questionArray = []
@@ -41,41 +36,31 @@ export default function QuestionCard({ questionDetails, questionNumber }) {
     setRandomArray(questionArray)
   }, [question]);
 
-
-  const questionsToLoad = randomArray.map(q =>
-    <div className='col-md-6 mb-3 justify-content-center'>
-      <div className="card m-2 " style={{ width: '120px' }} key={Math.random()}>
-        <div className="card-body">
-          <h5 className="card-title">{q}</h5>
-        </div>
-      </div>
-    </div>
-  )
-//   const questionsToLoad = randomArray.map((q, index) =>
-//         <Row className="answercard">
-//             <Col className={"answer" + (index + 1)}>{q}</Col>
-//         </Row>
-// )
-
-  function submitAnswer(e){
+  function submitAnswer(e) {
     const selected = e.target.textContent
-    if (questionNumber <=10){
+    if (questionNumber <= 10) {
       dispatch(increaseQuestionNumber())
       setTimer(targetTime)
     } else {
       // At game end, sets game as finished in redux
     }
-    if (selected === correct_answer && questionNumber <=10){
-      let score = 50 + (2.5*counter)
+    if (selected === correct_answer && questionNumber <= 10) {
+      let score = 50 + (2.5 * counter)
       dispatch(increaseScore(player, score))
-      socket.emit('update player score', {room: quizState.room, user: player, score})
+      socket.emit('update player score', { room: quizState.room, user: player, score })
     }
   }
 
   return (
     <div>
+      <div className="d-flex">
+        <h2>Category: {he.decode(category)}</h2>
+        <h2>{questionNumber}/10</h2>
+      </div>
       <Row className='questioncard'>
-        <Col>Question: {he.decode(question)}</Col>
+        <Col>
+          Question: {he.decode(question)}
+        </Col>
       </Row>
       <Container>
         <Row className='seperator'>
@@ -87,28 +72,6 @@ export default function QuestionCard({ questionDetails, questionNumber }) {
           <Col onClick={submitAnswer} className="answercard">{randomArray[3]}</Col>
         </Row>
       </Container>
-
     </div>
   )
 }
-
-
-
-
-
-// <motion.div
-// initial={{ opacity: 0, scale: 0.5 }}
-// animate={{ opacity: 1, scale: 1 }}
-// whileHover={{ scale: 1.05 }}
-// transition={{
-//     default: {
-//         duration: 0.3,
-//         ease: [0, 0.71, 0.2, 1.01],
-//     },
-//     scale: {
-//         type: "spring",
-//         damping: 10,
-//         stiffness: 400,
-//         restDelta: 0.001
-//     }
-// }}
