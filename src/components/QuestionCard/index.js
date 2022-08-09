@@ -2,25 +2,23 @@ import React, { useState, useEffect } from 'react';
 import { useSelector, useDispach } from 'react-redux';
 import { Navigate } from 'react-router-dom';
 import he from 'he';
+import { incrementQuestionNumber } from '../../actions';
 
 
 export default function QuestionCard({ questionDetails, questionNumber }) {
 
   const [randomArray, setRandomArray] = useState([])
-
   const quizState = useSelector((state) => state.quizState)
   const socket = useSelector((state) => state.socket)
   const player = useSelector((state) => state.player)
+
+  console.log(quizState)
+
+  const [gameFinished, setGameFinished] = useState(false);
+  const [timerCount, setTimerCount] = useState(30)
+  const [selectAnswer, setSelectAnswer] = useState('')
   const { question, category, difficulty, correct_answer, incorrect_answers } = questionDetails
 
-  console.log(questionDetails)
-  // Need counter, counter updates state which is reset when user goes to next question (or when timer runs out)
-  // Answers need to be shuffled
-  // Need a state that manages the option they choose 
-  // That state needs to be compared to correct answer
-  // Calculates score with time if answer is correct
-  // Need to check of game is over
-  // Dispatch to increase question number every 30 seconds ( only if Q# < 10 otherwise end game)
 
   useEffect(() => {
     let questionArray = []
@@ -38,11 +36,44 @@ export default function QuestionCard({ questionDetails, questionNumber }) {
     setRandomArray(questionArray)
   }, [question]);
 
+  function handleChange(e) {
+    e.preventDefault()
+    setSelectAnswer(e.target.value)
+  }
+
+  useEffect(() => {
+    if (quizState.questionNumber <= 10) {
+      dispatchEvent(incrementQuestionNumber())
+      setTimerCount(30)
+    } else {
+      console.log('Game Over')
+      setIsGameOver(true)
+    }
+  })
+
+  function submitAnswer(e) {
+    e.preventDefault();
+    if (quizState.questionNumber <= 10) {
+      dispatch(incrementQuestionNumber());
+      setCounter(30);
+    } else {
+      console.log('Game Over');
+      setIsGameOver(true);
+    }
+
+    if (selectedOption === correct_answer && gameState.questionNumber <= 10) {
+      let score = 100 + (2 * counter);
+      dispatch(updateScore(clientUser, score));
+      socket.emit('update player score', { room: gameState.roomName, user: clientUser, score })
+    };
+  }
+
+
   const questionsToLoad = randomArray.map(q =>
     <div className='col-md-6 mb-3 justify-content-center'>
       <div className="card m-2 " style={{ width: '120px' }} key={Math.random()}>
         <div className="card-body">
-          <h5 className="card-title">{q}</h5>
+          <h5 className="card-title">{he.decode(q)}</h5>
         </div>
       </div>
     </div>
@@ -56,12 +87,13 @@ export default function QuestionCard({ questionDetails, questionNumber }) {
       </div>
       <div className='card'>
         <h2>Question: {he.decode(question)}</h2>
-        <div className="container mt-4" >
-          <div className="row d-flex justify-content-center">
-
-            {questionsToLoad}
-
-          </div>
+      </div>
+      <div className="container mt-4" >
+        <div className="row d-flex justify-content-center">
+          <form onSubmit={submitAnswer}>
+            <input value={selectAnswer} onChange={handleChange} />
+          </form>
+          <button type="submit">Submit</button>
         </div>
       </div>
     </div>

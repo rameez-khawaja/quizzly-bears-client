@@ -40,4 +40,10 @@ const quizFinished = (user) => {
     }
 }
 
-export { storeSocket, changeState, storeUser, addUser, startQuiz, quizFinished };
+const incrementQuestionNumber = () => {
+    return {
+        type: 'INCREMENT_QUESTION'
+    }
+}
+
+export { storeSocket, changeState, storeUser, addUser, startQuiz, quizFinished, incrementQuestionNumber };
