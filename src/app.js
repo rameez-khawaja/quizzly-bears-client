@@ -17,9 +17,11 @@ import {
 const App = () => {
   const [socket, setSocket] = useState();
   const dispatch = useDispatch();
-  const currentUser = useSelector((state) => state.user);
+  const currentUser = useSelector((state) => state.player);
   const host = useSelector((state) => state.quizState.host);
   const quizState = useSelector((state) => state.quizState);
+
+  console.log(currentUser)
 
   useEffect(() => {
     const newSocket = io(URL);
