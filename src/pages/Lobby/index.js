@@ -4,7 +4,11 @@ import { Navigate } from "react-router-dom";
 import { startQuiz } from "../../actions";
 import { Chat } from "../../components";
 import {motion} from 'framer-motion'
-
+import pic1 from '../../images/avatars/avatar1.png';
+import pic2 from '../../images/avatars/avatar2.png';
+import pic3 from '../../images/avatars/avatar3.png';
+import pic4 from '../../images/avatars/avatar4.png';
+const picArr = [pic1, pic2, pic3, pic4]
 const Lobby = () => {
     const data = useSelector((state) => state.quizState);
     const user = useSelector((state) => state.player);
@@ -28,7 +32,7 @@ console.log(data)
             {data.users && (
                 <div className="container text-center bg-transparent">
                     <div className="container d-flex justify-content-center bg-transparent">
-                        <motion.div className="py-2 text-center col-8 mx-auto"
+                        <motion.div className="py-2 text-center col-12 mx-auto"
                                         initial={{ opacity: 0, scale: 0.5 }}
                                         animate={{ opacity: 1, scale: 1 }}
                                         whileHover={{ scale: 1.05 }}
@@ -76,14 +80,16 @@ console.log(data)
                                 <div id="message-container"></div>
                                 <Chat socket={socket} username={user} room={data.room} />
                             </section>
-                            <div className="col-sm-1"></div>
-                            <div className="col-4 d-flex flex-column">
-                                {data.users.map((user) => {
+                            <div className="col-5 d-flex flex-column">
+                                {data.users.map((user, index) => {
 
                                     let color = colors[Math.floor(Math.random() * colors.length)];
 
                                     return (
-                                        <motion.div className="card px-1 pt-1"
+                                        <section className="d-flex">
+                                            <motion.div className="card mx-auto bg-transparent p-1 m-1"
+                                            key={user.name}
+                                            style={{ backgroundColor: color, height:"100px", width: "100px"}}
                                         initial={{ opacity: 0, scale: 0.5 }}
                                         animate={{ opacity: 1, scale: 1 }}
                                         whileHover={{ scale: 1.15 }}
@@ -101,14 +107,34 @@ console.log(data)
                                             }
                                         }}
 
-                                            className="card mx-auto border border-dark rounded p-1 m-1 shadow"
-                                            key={user.name}
-                                            style={{ backgroundColor: color }}
+
+                                        ><img src={picArr[index]} alt="mypic" className="shadow border rounded-circle"/></motion.div>
+                                        <motion.div
+                                        className="card mx-auto w-auto border border-dark rounded p-1 m-1 shadow"
+                                        key={user.name}
+                                        initial={{ opacity: 0, scale: 0.5 }}
+                                        animate={{ opacity: 1, scale: 1 }}
+                                        style={{backgroundColor: color}}
+                                        whileHover={{ scale: 1.15 }}
+                                        whileTap={{ scale: 0.85 }}
+                                        transition={{
+                                            default: {
+                                                duration: 0.3,
+                                                ease: [0, 0.71, 0.2, 1.01],
+                                            },
+                                            scale: {
+                                                type: "spring",
+                                                damping: 10,
+                                                stiffness: 200,
+                                                restDelta: 0.001
+                                            }
+                                        }}
                                         >
                                             {" "}
 
-                                            <h3><i class="fa-solid fa-person"></i> {user.name}</h3>{" "}
+                                            <h3 className="mx-auto my-auto p-1">{user.name}</h3>{" "}
                                         </motion.div>
+                                        </section>
                                     );
                                 })}
                             </div>
