@@ -86,8 +86,8 @@ console.log(data)
                                     let color = colors[Math.floor(Math.random() * colors.length)];
 
                                     return (
-                                        <section className="d-flex">
-                                            <motion.div className="card mx-auto bg-transparent p-1 m-1"
+                                        <section className="d-flex flex-row justify-content-center">
+                                            <motion.div className="card mx-auto bg-transparent p-1 m-1 position-relative"
                                             key={user.name}
                                             style={{ backgroundColor: color, height:"100px", width: "100px"}}
                                         initial={{ opacity: 0, scale: 0.5 }}
@@ -110,11 +110,11 @@ console.log(data)
 
                                         ><img src={picArr[index]} alt="mypic" className="shadow border rounded-circle"/></motion.div>
                                         <motion.div
-                                        className="card mx-auto w-auto border border-dark rounded p-1 m-1 shadow"
+                                        className="card mx-auto my-auto w-auto border border-dark rounded p-1 shadow"
                                         key={user.name}
                                         initial={{ opacity: 0, scale: 0.5 }}
                                         animate={{ opacity: 1, scale: 1 }}
-                                        style={{backgroundColor: color}}
+                                        style={{backgroundColor: color, left: "-20px"}}
                                         whileHover={{ scale: 1.15 }}
                                         whileTap={{ scale: 0.85 }}
                                         transition={{
