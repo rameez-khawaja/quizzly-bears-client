@@ -39,7 +39,7 @@ const App = () => {
           dispatch(addUser(user));
           let newGame = { ...quizState };
           quizState.users.push({
-            new: user,
+            name: user,
             score: 0,
             completed: false
           })

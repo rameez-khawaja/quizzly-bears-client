@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { CreateGame, JoinGame } from '../../components';
+import { CreateGame } from '../../components';
 import { useSelector, useDispatch } from "react-redux";
 import { Modal } from '@material-ui/core';
 import { storeUser } from "../../actions";
@@ -32,7 +32,6 @@ const dropIn = {
 
 const Home = () => {
     const [createGame, setCreateGame] = useState(false);
-    const [joinGame, setJoinGame] = useState(false);
     const [username, setUsername] = useState("");
     const [checkForm, setCheckForm] = useState(false);
     const [lobbyCode, setLobbyCode] = useState("");
@@ -41,7 +40,6 @@ const Home = () => {
     const dispatch = useDispatch();
     const socket = useSelector((state) => state.socket);
 
-    const handleJoinGame = () => setJoinGame(true)
 
     const handleCreateGameModal = () => setCreateGame(true);
 
@@ -183,7 +181,7 @@ const Home = () => {
                                     }}>
 
                                         {/* SUBMIT BUTTON TO JOIN THE GAME ROOM */}
-                                        <button onClick={handleJoinGame} type="submit" className="btn btn-primary my-1 w-100">Join Game</button>
+                                        <button type="submit" className="btn btn-primary my-1 w-100">Join Game</button>
 
                                     </motion.div>
                                 </form>
