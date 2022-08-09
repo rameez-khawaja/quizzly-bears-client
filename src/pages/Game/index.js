@@ -4,7 +4,8 @@ import { Modal } from '@material-ui/core';
 import { useSelector, useDispatch } from "react-redux";
 
 const Game = () => {
-    console.log("gameloaded")
+    const state = useSelector(state => state.quizState.questionNumber);
+    console.log(state)
     return <div>Game loads</div>
 }
 

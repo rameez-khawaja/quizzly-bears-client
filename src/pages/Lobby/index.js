@@ -1,19 +1,13 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { Modal } from '@material-ui/core';
 import { useSelector, useDispatch } from "react-redux";
 import { Navigate } from "react-router-dom";
 import { startQuiz } from "../../actions";
 import { Chat } from "../../components";
 
 const Lobby = () => {
-    const state = useSelector((state) => state);
     const data = useSelector((state) => state.quizState);
     const user = useSelector((state) => state.player);
     const socket = useSelector((state) => state.socket);
-
-    console.log(state)
-
-    console.log(data)
 
     const dispatch = useDispatch();
 
@@ -53,7 +47,7 @@ const Lobby = () => {
                                             style={{ backgroundColor: color }}
                                         >
                                             {" "}
-                                            <h3><i class="fa-solid fa-shield text-danger"></i> {user.name} <i class="fa-solid fa-shield text-danger"></i></h3>{" "}
+                                            <h3><i className="fa-solid fa-shield text-danger"></i> {user.name} <i className="fa-solid fa-shield text-danger"></i></h3>{" "}
                                         </div>
                                     );
                                 })}
@@ -87,7 +81,6 @@ const Lobby = () => {
                             )}
                         </div>
                     </div>
-                    {console.log(data)}
                 </div>
             )}
             {data.gameStarted && <Navigate to="/play" />}
