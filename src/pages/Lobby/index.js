@@ -83,7 +83,7 @@ const Lobby = () => {
                                         let color = colors[Math.floor(Math.random() * colors.length)];
 
                                         return (
-                                            <motion.div className="card px-1 pt-1"
+                                            <motion.div
                                                 initial={{ opacity: 0, scale: 0.5 }}
                                                 animate={{ opacity: 1, scale: 1 }}
                                                 whileHover={{ scale: 1.15 }}

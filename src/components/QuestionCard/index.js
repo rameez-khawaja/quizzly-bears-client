@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useSelector, useDispach } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { Col, Row, Container } from 'react-bootstrap';
 import { motion } from 'framer-motion';
 import { Navigate } from 'react-router-dom';
@@ -10,19 +10,16 @@ import { increaseQuestionNumber } from '../../actions';
 export default function QuestionCard({ questionDetails, questionNumber }) {
 
 
+  const targetTime = 20
   const [randomArray, setRandomArray] = useState([])
+  const [timer, setTimer] = useState(targetTime);
+
   const quizState = useSelector((state) => state.quizState)
   const socket = useSelector((state) => state.socket)
   const player = useSelector((state) => state.player)
-
-
-
-  const [gameFinished, setGameFinished] = useState(false);
-  const [timerCount, setTimerCount] = useState(30)
-  const [selectAnswer, setSelectAnswer] = useState('')
   const { question, category, difficulty, correct_answer, incorrect_answers } = questionDetails
 
-
+  const dispatch = useDispatch()
 
   useEffect(() => {
     let questionArray = []
@@ -40,89 +37,36 @@ export default function QuestionCard({ questionDetails, questionNumber }) {
     setRandomArray(questionArray)
   }, [question]);
 
-  function handleChange(e) {
-    e.preventDefault()
-    setSelectAnswer(e.target.value)
-  }
-
-  useEffect(() => {
-    if (quizState.questionNumber <= 10) {
-      dispatch(increaseQuestionNumber())
-      setTimerCount(30)
-    } else {
-      console.log('Game Over')
-      setIsGameOver(true)
-    }
-  })
-
   function submitAnswer(e) {
-    e.preventDefault();
-    if (quizState.questionNumber <= 10) {
-      dispatch(increaseQuestionNumber());
-      setCounter(30);
+    const selected = e.target.textContent
+    if (questionNumber <= 10) {
+      dispatch(increaseQuestionNumber())
+      setTimer(targetTime)
     } else {
-      console.log('Game Over');
-      setIsGameOver(true);
+      // At game end, sets game as finished in redux
     }
-
-    if (selectAnswer === correct_answer && quizState.questionNumber <= 10) {
+    if (selected === correct_answer && questionNumber <= 10) {
       let score = 50 + (2.5 * counter)
       dispatch(increaseScore(player, score))
       socket.emit('update player score', { room: quizState.room, user: player, score })
     }
   }
 
-
-
-  const questionsToLoad = randomArray.map(q =>
-    <div className='col-md-6 mb-3 justify-content-center'>
-      <div className="card m-2 " style={{ width: '120px' }} key={Math.random()}>
-        <div className="card-body">
-          <h5 className="card-title">{he.decode(q)}</h5>
-        </div>
-      </div>
-    </div>)
-
   return (
     <div>
-      <div>
-        <h2>Category: {he.decode(category)}</h2>
-        <h2>{questionNumber}/10</h2>
-      </div>
-      <div className='card'>
-        <h2>Question: {he.decode(question)}</h2>
-      </div>
-      <div className="container mt-4" >
-        <div className="row d-flex justify-content-center">
-          {he.decode(questionsToLoad)}
-          <form onSubmit={submitAnswer}>
-            <input value={selectAnswer} onChange={handleChange} />
-          </form>
-          <button type="submit">Submit</button>
-        </div>
-      </div>
-
+      <Row className='questioncard'>
+        <Col>Question: {he.decode(question)}</Col>
+      </Row>
+      <Container>
+        <Row className='seperator'>
+          <Col onClick={submitAnswer} className="answercard">{randomArray[0]}</Col>
+          <Col onClick={submitAnswer} className="answercard">{randomArray[1]}</Col>
+        </Row>
+        <Row className='seperator'>
+          <Col onClick={submitAnswer} className="answercard">{randomArray[2]}</Col>
+          <Col onClick={submitAnswer} className="answercard">{randomArray[3]}</Col>
+        </Row>
+      </Container>
     </div>
   )
 }
-
-
-
-
-
-// <motion.div
-// initial={{ opacity: 0, scale: 0.5 }}
-// animate={{ opacity: 1, scale: 1 }}
-// whileHover={{ scale: 1.05 }}
-// transition={{
-//     default: {
-//         duration: 0.3,
-//         ease: [0, 0.71, 0.2, 1.01],
-//     },
-//     scale: {
-//         type: "spring",
-//         damping: 10,
-//         stiffness: 400,
-//         restDelta: 0.001
-//     }
-// }}
