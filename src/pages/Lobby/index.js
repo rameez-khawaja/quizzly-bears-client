@@ -9,7 +9,7 @@ const Lobby = () => {
     const data = useSelector((state) => state.quizState);
     const user = useSelector((state) => state.player);
     const socket = useSelector((state) => state.socket);
-
+console.log(data)
     const dispatch = useDispatch();
 
     const colors = ["lightred", "lightgreen", "lightblue", "orange", "yellow", "pink"];
@@ -64,6 +64,11 @@ const Lobby = () => {
                                     {data.host}'s Quizzly Game!{" "}
                                 </motion.div>
                                 <h2 className="text-primary">Waiting for all players...</h2>
+                                <div className="d-flex flex-column justify-content-center mt-2">
+                                <p className="my-auto mx-auto border-bottom border-dark">Questions: 10</p>
+                                <p className="my-auto mx-auto border-bottom border-dark">Category: {data.category}</p>
+                                <p className="my-auto mx-auto border-bottom border-dark">Difficulty: {data.difficulty}</p>
+                            </div>
                             </div>
                             <section className="row py-4">
 

@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from "react";
 import { Redirect } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import {motion} from 'framer-motion';
-import { useNavigate } from 'react-router-dom'
+import { Navigate, useNavigate } from 'react-router-dom'
 import './styles.css'
 
 const HighScores = () => {

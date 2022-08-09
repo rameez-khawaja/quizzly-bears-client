@@ -3,7 +3,7 @@ import { CreateGame } from '../../components';
 import { useSelector, useDispatch } from "react-redux";
 import { Modal } from '@material-ui/core';
 import { storeUser } from "../../actions";
-import { Navigate } from 'react-router-dom';
+import { Navigate, useNavigate } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import './styles.css'
 import Backdrop from './Backdrop'
@@ -35,6 +35,7 @@ const Home = () => {
     const [username, setUsername] = useState("");
     const [checkForm, setCheckForm] = useState(false);
     const [lobbyCode, setLobbyCode] = useState("");
+    const navigate = useNavigate();
 
     const dispatch = useDispatch();
     const socket = useSelector((state) => state.socket);
