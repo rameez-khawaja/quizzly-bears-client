@@ -11,7 +11,7 @@ const Game = () => {
     const quizState = useSelector((state) => state.quizState)
     const player = useSelector((state) => state.player)
 
-    // console.log(quizState)
+    // console.log(player)
 
     const players = allUsers.map(player =>
         <div className="card m-2" style={{ width: '120px' }} key={Math.random()}>
@@ -26,7 +26,7 @@ const Game = () => {
 
     return (
         <section>
-            <div> hello, see below for le question carde </div>
+            <div> Users: </div>
             <section>
                 <div className="d-flex justify-content-center">
                     {players}
