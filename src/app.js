@@ -17,7 +17,7 @@ import {
 const App = () => {
   const [socket, setSocket] = useState();
   const dispatch = useDispatch();
-  const currentUser = useSelector((state) => state.user);
+  const currentUser = useSelector((state) => state.player);
   const host = useSelector((state) => state.quizState.host);
   const quizState = useSelector((state) => state.quizState);
 
@@ -37,7 +37,7 @@ const App = () => {
           dispatch(addUser(user));
           let newGame = { ...quizState };
           quizState.users.push({
-            new: user,
+            name: user,
             score: 0,
             completed: false
           })
