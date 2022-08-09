@@ -11,10 +11,10 @@ const Game = () => {
     const quizState = useSelector((state) => state.quizState)
     const player = useSelector((state) => state.player)
 
-    console.log(quizState)
+    // console.log(quizState)
 
     const players = allUsers.map(player =>
-        <div className="card m-2" style={{ width: '80px' }} key={Math.random()}>
+        <div className="card m-2" style={{ width: '120px' }} key={Math.random()}>
             <div className="card-body">
                 <h5 className="card-title">{player.name}</h5>
                 <h6 className="card-subtitle mb-2 text-muted">{player.score}</h6>
@@ -28,14 +28,14 @@ const Game = () => {
         <section>
             <div> hello, see below for le question carde </div>
             <section>
-                {questionNumber <= 10 && (
-                    <div>
-                        <QuestionCard question={allQuestions[questionNumber - 1]} />
-                    </div>
-                )}
                 <div className="d-flex justify-content-center">
                     {players}
                 </div>
+                {questionNumber <= 10 && (
+                    <div>
+                        <QuestionCard questionDetails={allQuestions[questionNumber - 1]} questionNumber={questionNumber} />
+                    </div>
+                )}
             </section>
             {questionNumber > 10 && <Navigate to="/results" />}
         </section>

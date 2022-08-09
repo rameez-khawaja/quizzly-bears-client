@@ -22,7 +22,6 @@ const Lobby = () => {
         socket.emit("send state to players", newState);
     }
 
-
     return (
         <section>
             {data.users && (
