@@ -3,7 +3,7 @@ import {motion} from "framer-motion"
 const Header = () => {
     return (
         <section className="container">
-            <header className="text-center py-5 mx-5">
+            <header className="text-center py-3 mx-5">
                 <div>
                     <motion.h1
         className='text-light display-5'

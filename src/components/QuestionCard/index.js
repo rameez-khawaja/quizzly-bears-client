@@ -16,10 +16,10 @@ export default function QuestionCard({ questionDetails, questionNumber }) {
   const socket = useSelector((state) => state.socket)
   const player = useSelector((state) => state.player)
   const { question, category, difficulty, correct_answer, incorrect_answers } = questionDetails
-  
+
 
   // Need counter, counter updates state which is reset when user goes to next question (or when timer runs out)
-  // Need a state that manages the option they choose 
+  // Need a state that manages the option they choose
   // That state needs to be compared to correct answer
   // Calculates score with time if answer is correct
   // Need to check of game is over

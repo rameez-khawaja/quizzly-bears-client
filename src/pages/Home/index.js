@@ -3,7 +3,7 @@ import { CreateGame } from '../../components';
 import { useSelector, useDispatch } from "react-redux";
 import { Modal } from '@material-ui/core';
 import { storeUser } from "../../actions";
-import { Navigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import './styles.css'
 import Backdrop from './Backdrop'
@@ -36,7 +36,7 @@ const Home = () => {
     const [checkForm, setCheckForm] = useState(false);
     const [lobbyCode, setLobbyCode] = useState("");
 
-
+    const navigate = useNavigate();
     const dispatch = useDispatch();
     const socket = useSelector((state) => state.socket);
 
@@ -66,6 +66,11 @@ const Home = () => {
         setLobbyCode(e.target.value);
     };
 
+
+
+    function sendToLeaderboard() {
+        navigate('/highscores');
+    }
 
     return (
 <section className="container pb-3 d-flex flex-column">
@@ -97,7 +102,7 @@ const Home = () => {
         <div className="container col-lg-4 col-md-6 col-sm-10 col-12" id="landingPageDiv">
             <div>
                 <div className="container text-center">
-                    <motion.div className="card p-1"
+                    <motion.div className="card px-1 pt-1"
                     initial={{ opacity: 0, scale: 0.5 }}
                     animate={{ opacity: 1, scale: 1 }}
                     whileHover={{ scale: 1.05 }}
@@ -209,6 +214,23 @@ const Home = () => {
                                     restDelta: 0.001
                                 }
                             }}>Create Game</motion.button>
+                            {/* Create Game Button */}
+                            <motion.button onClick={sendToLeaderboard} className="btn btn-transparent mt-1 mx-1"
+                            initial={{ opacity: 0, scale: 0.5 }}
+                            animate={{ opacity: 1, scale: 0.8 }}
+                            whileHover={{ scale: 0.85 }}
+                            transition={{
+                                default: {
+                                    duration: 0.3,
+                                    ease: [0, 0.71, 0.2, 1.01],
+                                },
+                                scale: {
+                                    type: "spring",
+                                    damping: 10,
+                                    stiffness: 400,
+                                    restDelta: 0.001
+                                }
+                            }}>Leaderboard</motion.button>
 
                         </div>
                         <Backdrop onClick={handleCloseGameModal}>
