@@ -10,6 +10,7 @@ const Game = () => {
     const allUsers = useSelector((state) => state.quizState.users);
     const quizState = useSelector((state) => state.quizState)
     const player = useSelector((state) => state.player)
+    // const dispatch = useDispatch();
 
     // console.log(player)
 
