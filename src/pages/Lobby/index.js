@@ -60,13 +60,13 @@ const Lobby = () => {
                             </div>
                             <section className="d-flex flex-row justify-content-center">
                                 <div id="message-container"></div>
-                                <Chat socket={socket} username={user} room={data.roomName} />
+                                <Chat socket={socket} username={user} room={data.room} />
                             </section>
                             {data.host === user ? (
                                 <div className="container d-flex flex-column align-items-center">
                                     <div className="card text-center my-1 mx-auto shadow border border-primary bg-light rounded">
                                         <div className="p-1">
-                                            Share room ID: <b>{data.roomName}</b>
+                                            Share room ID: <b>{data.room}</b>
                                         </div>
                                     </div>
                                     <button
@@ -80,7 +80,7 @@ const Lobby = () => {
                                 <div className="container d-flex flex-column align-items-center">
                                     <div className="card text-center my-1 mx-auto shadow border border-primary bg-light rounded">
                                         <div className="p-1">
-                                            Share room ID: <b>{data.roomName}</b>
+                                            Share room ID: <b>{data.room}</b>
                                         </div>
                                     </div>
                                 </div>

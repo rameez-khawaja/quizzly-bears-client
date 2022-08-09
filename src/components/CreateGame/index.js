@@ -64,10 +64,11 @@ export default function CreateGame() {
     const handleDifficulty = (e) => setDifficulty(e.target.value);
     const handleFormSubmit = async (e) => {
         e.preventDefault();
-        setLobbyCode(lobbyCodeGenerator)
+        const newLobbyCode = lobbyCodeGenerator()
+        setLobbyCode(newLobbyCode);
         const questions = await getQuestions(category, difficulty);
         socket.emit("create game", {
-            room: lobbyCode,
+            room: newLobbyCode,
             category,
             difficulty,
             host: username,
