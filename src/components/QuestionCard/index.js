@@ -53,10 +53,6 @@ export default function QuestionCard({ questionDetails, questionNumber }) {
 
   return (
     <div>
-      <div className="d-flex">
-        <h2>Category: {he.decode(category)}</h2>
-        <h2>{questionNumber}/10</h2>
-      </div>
       <Row className='questioncard'>
         <Col>
           Question: {he.decode(question)}
