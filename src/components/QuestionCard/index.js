@@ -1,22 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { useSelector, useDispach } from 'react-redux';
 import { Col, Row, Container } from 'react-bootstrap';
+import { motion } from 'framer-motion';
 import { Navigate } from 'react-router-dom';
 import he from 'he';
-
-<Container>
-  <Row>
-    <Col></Col>
-  </Row>
-  <Row>
-    <Col></Col>
-    <Col></Col>
-  </Row>
-  <Row>
-    <Col></Col>
-    <Col></Col>
-  </Row>
-</Container>
 
 
 export default function QuestionCard({ questionDetails, questionNumber }) {
@@ -61,7 +48,7 @@ export default function QuestionCard({ questionDetails, questionNumber }) {
 
   return (
     <div>
-      <div>
+      <div className="d-flex">
         <h2>Category: {he.decode(category)}</h2>
         <h2>{questionNumber}/10</h2>
       </div>
@@ -70,7 +57,25 @@ export default function QuestionCard({ questionDetails, questionNumber }) {
       </Row>
       <Container>
         <Row className='seperator'>
-          <Col className="answercard">{randomArray[0]}</Col>
+                                <Col className="answercard">
+                                        <motion.div
+                                        initial={{ opacity: 0, scale: 0.5 }}
+                                        animate={{ opacity: 1, scale: 1 }}
+                                        whileHover={{ scale: 1.05 }}
+                                        transition={{
+                                            default: {
+                                                duration: 0.3,
+                                                ease: [0, 0.71, 0.2, 1.01],
+                                            },
+                                            scale: {
+                                                type: "spring",
+                                                damping: 10,
+                                                stiffness: 400,
+                                                restDelta: 0.001
+                                            }
+                                        }}
+                                        >{randomArray[0]}
+                                        </motion.div></Col>
           <Col className="answercard">{randomArray[1]}</Col>
         </Row>
         <Row className='seperator'>
@@ -83,19 +88,4 @@ export default function QuestionCard({ questionDetails, questionNumber }) {
 }
 
 
-// const questionNumber = useSelector((state) => state.quizState.questionNumber);
-//   const allQuestions = useSelector((state) => state.quizState.questions);
-//   console.log(allQuestions[questionNumber-1])
 
-//   return (
-//     <section>
-//       <section>
-//         {questionNumber <= 10 && (
-//           <div>
-//             <QuestionCard allQuestions={allQuestions[questionNumber-1]} />
-//           </div>
-//         )}
-//       </section>
-//       {questionNumber > 10 && <Navigate to="/results" />}
-//     </section>
-//   );
