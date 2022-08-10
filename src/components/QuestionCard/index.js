@@ -227,3 +227,23 @@ export default function QuestionCard({ questionDetails, questionNumber }) {
 //         restDelta: 0.001
 //     }
 // }}
+
+
+        // <div class="questioncard row">
+        //   <div class="col">Question: What is the stage name of English female rapper Mathangi Arulpragasam, who is known for the song "Paper Planes"?
+        //   </div>
+        // </div>
+        // <div class="container">
+        //   <div class="seperator row">
+        //     <div class="answercard col">K.I.A.
+        //     </div>
+        //     <div class="answercard col">M.I.A.
+        //     </div>
+        //   </div>
+        //   <div class="seperator row">
+        //     <div class="answercard col">C.I.A.
+        //     </div>
+        //     <div class="answercard col">A.I.A.
+        //     </div>
+        //   </div>
+        // </div>

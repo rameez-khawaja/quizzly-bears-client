@@ -31,8 +31,6 @@ const containerCategory = {
   exit: { opacity: 0, scale: 0.5 }
 }
 
-
-
 const Game = () => {
   const questionNumber = useSelector((state) => state.quizState.questionNumber);
   const allQuestions = useSelector((state) => state.quizState.questions);
