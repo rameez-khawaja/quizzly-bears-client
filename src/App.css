@@ -128,6 +128,12 @@ body {
     outline: none !important;
   }
 
+  .waiting {
+    color: white;
+    font-family: 'GT Walsheim Pro';
+
+  }
+
 @keyframes gradient {
 	0% {
 		background-position: 0% 50%;
@@ -150,4 +156,10 @@ body {
     .questioncard {
         max-width: 300px
     }
+}
+
+@media (max-width: 485px) {
+  .flex-row {
+    flex-direction: column !important;
+  }
 }
