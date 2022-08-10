@@ -12,7 +12,7 @@ import {
   changeState,
   storeSocket,
   addUser,
-  updateScore,
+  increaseScore,
   quizFinished,
 } from "./actions";
 
@@ -30,6 +30,10 @@ const App = () => {
     newSocket.on("change state", (state) => {
       dispatch(changeState(state));
     });
+
+    newSocket.on("update all scores", ({player, score}) => {
+      dispatch(increaseScore(player, score));
+    })
 
     newSocket.on("update opponent completion", (currentUser) => {
       dispatch(quizFinished(currentUser));
