@@ -105,7 +105,7 @@ const Lobby = () => {
                                     let color = colors[Math.floor(Math.random() * colors.length)];
 
                                     return (
-                                        <div key={Math.random()} className="m-4">
+                                        <div key={Math.random()} className="m-3">
                                             <motion.div className="card mx-auto bg-transparent p-1 m-1"
                                                 key={user.name}
                                                 style={{ backgroundColor: color, height: "100px", width: "100px" }}
@@ -180,12 +180,28 @@ const Lobby = () => {
                                 >START GAME</motion.button>
                             </div>
                         ) : (
-                            <div className="container d-flex flex-column align-items-center">
-                                <div className="card text-center my-1 mx-auto shadow border border-primary bg-light rounded">
-                                    <div className="p-1 mb-2">
-                                        Share room ID: <b>{data.room}</b>
+                            <div className="row mt-5 mb-5">
+                                <motion.div className="col"
+                                    initial={{ opacity: 0, scale: 0.5 }}
+                                    animate={{ opacity: 1, scale: 1 }}
+                                    exit={{ opacity: 0, scale: 0.5 }}
+                                    whileHover={{ scale: 1.05 }}
+                                    transition={{
+                                        default: {
+                                            duration: 0.3,
+                                            ease: [0, 0.71, 0.2, 1.01],
+                                        },
+                                        scale: {
+                                            type: "spring",
+                                            damping: 10,
+                                            stiffness: 400,
+                                            restDelta: 0.001
+                                        }
+                                    }}>
+                                    <div className="p-1">
+                                        <b>Share your room with friends: "{data.room}"</b>
                                     </div>
-                                </div>
+                                </motion.div>
                             </div>)}
                     </motion.div>
                 </div>
