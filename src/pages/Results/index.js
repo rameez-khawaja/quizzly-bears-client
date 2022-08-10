@@ -89,7 +89,7 @@ const Results = () => {
 
         useEffect(() => {
           setTimeout(() => startAnimation(), 200);
-          setTimeout(() => pauseAnimation(), 15000);
+          setTimeout(() => pauseAnimation(), 10000);
         }, []);
 
       
