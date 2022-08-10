@@ -72,7 +72,7 @@ const Lobby = () => {
                             </div>
                             <section className="row py-4">
 
-                                <section className="col-5 d-flex flex-row justify-content-center">
+                                <section className="">
                                     <div id="message-container"></div>
                                     <Chat socket={socket} username={user} room={data.room} />
                                 </section>
