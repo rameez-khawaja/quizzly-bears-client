@@ -191,7 +191,9 @@ const Lobby = () => {
                 </div>
 
             )}
+            {data.gameStarted && <Navigate to="/play" />}
         </section>
+
     )
 }
 
