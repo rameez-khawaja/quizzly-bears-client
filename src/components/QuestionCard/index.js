@@ -6,7 +6,7 @@ import { Navigate } from "react-router-dom";
 import he from "he";
 import { increaseQuestionNumber, increaseScore } from "../../actions";
 const targetTime = 20;
-let score = 50
+
 export default function QuestionCard({ questionDetails, questionNumber }) {
   const [randomArray, setRandomArray] = useState([]);
   const [timer, setTimer] = useState(targetTime);
@@ -63,7 +63,7 @@ export default function QuestionCard({ questionDetails, questionNumber }) {
 
     if (selected === correct_answer && questionNumber <= 10) {
       // let score = 50 + (2.5 * timer);
-
+      let score = 50
       dispatch(increaseScore(player, score));
       socket.emit("update player score", {
         room: quizState.room,
