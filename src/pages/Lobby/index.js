@@ -183,7 +183,7 @@ const Lobby = () => {
                             <div className="container d-flex flex-column align-items-center">
                                 <div className="card text-center my-1 mx-auto shadow border border-primary bg-light rounded">
                                     <div className="p-1 mb-2">
-                                        Share room ID: <b>{data.room}</b>
+                                        <b>Share your room with friends: "{data.room}"</b>
                                     </div>
                                 </div>
                             </div>)}
