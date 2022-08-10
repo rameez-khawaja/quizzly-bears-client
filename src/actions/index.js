@@ -54,4 +54,6 @@ const increaseScore = (user, score) => {
     }
 }
 
-export { storeSocket, changeState, storeUser, addUser, startQuiz, quizFinished, increaseQuestionNumber };
+export { storeSocket, changeState, storeUser, addUser, startQuiz, quizFinished, increaseQuestionNumber, increaseScore };
+
+

@@ -40,7 +40,7 @@ function Chat({ socket, username, room }) {
   }, [socket]);
 
   return (
-    <div className="chat-window card border-primary shadow">
+    <div className="chat-window card shadow">
       <div className="chat border-bottom border-primary text-primary">
       Chat <i className="fa-solid fa-comment-dots"></i>
             </div>
@@ -72,7 +72,7 @@ function Chat({ socket, username, room }) {
         <input
           type="text"
           value={currentMessage}
-          placeholder="Chat..."
+          placeholder="Chat... chat! chat...."
           onChange={(event) => {
             setCurrentMessage(event.target.value);
           }}

@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { Navigate } from "react-router-dom";
 import { startQuiz } from "../../actions";
 import { Chat } from "../../components";
-import {motion} from 'framer-motion'
+import { motion } from 'framer-motion'
 import pic1 from '../../images/avatars/avatar1.png';
 import pic2 from '../../images/avatars/avatar2.png';
 import pic3 from '../../images/avatars/avatar3.png';
@@ -13,7 +13,7 @@ const Lobby = () => {
     const data = useSelector((state) => state.quizState);
     const user = useSelector((state) => state.player);
     const socket = useSelector((state) => state.socket);
-console.log(data)
+    console.log(data)
     const dispatch = useDispatch();
 
     const colors = ["lightred", "lightgreen", "lightblue", "orange", "yellow", "pink"];
