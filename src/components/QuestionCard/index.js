@@ -4,28 +4,26 @@ import { Col, Row, Container } from 'react-bootstrap';
 import { motion } from 'framer-motion';
 import { Navigate } from 'react-router-dom';
 import he from 'he';
-import { increaseQuestionNumber } from '../../actions';
-
+import { increaseQuestionNumber, increaseScore } from '../../actions';
+const targetTime = 20
 
 export default function QuestionCard({ questionDetails, questionNumber }) {
-
-  const targetTime = 20
   const [randomArray, setRandomArray] = useState([])
   const [timer, setTimer] = useState(targetTime);
   const [finishedQuiz, setFinishedQuiz] = useState(false);
+  const [playerAnswer, setPlayerAnswer] = useState('')
   const quizState = useSelector((state) => state.quizState)
   const socket = useSelector((state) => state.socket)
   const player = useSelector((state) => state.player)
+  const dispatch = useDispatch()
   const { question, category, difficulty, correct_answer, incorrect_answers } = questionDetails
 
   // Need counter, counter updates state which is reset when user goes to next question (or when timer runs out)
   // Need a state that manages the option they choose
   // That state needs to be compared to correct answer
   // Calculates score with time if answer is correct
-  // Need to check of game is over
+  // Need to check of game is over (done)
   // Dispatch to increase question number every 30 seconds ( only if Q# < 10 otherwise end game)
-
-  const dispatch = useDispatch()
 
   useEffect(() => {
     let questionArray = []
@@ -45,9 +43,14 @@ export default function QuestionCard({ questionDetails, questionNumber }) {
 
 
   function submitAnswer(e) {
+    e.preventDefault();
     const selected = e.target.textContent
+    setPlayerAnswer(selected)
+    console.log(selected)
     if (questionNumber <= 10) {
+      // move player to the next question
       dispatch(increaseQuestionNumber())
+      // reset countdown timer
       setTimer(targetTime)
     } else {
       // At game end, sets game as finished in redux
@@ -56,11 +59,11 @@ export default function QuestionCard({ questionDetails, questionNumber }) {
     }
 
 
-
+let score
     if (selected === correct_answer && questionNumber <= 10) {
-      let score = 50 + (2.5 * timer)
+      score = 50 + (2.5 * timer)
       dispatch(increaseScore(player, score))
-      socket.emit('update player score', { room: quizState.room, user: player, score })
+      socket.emit('update player score', { room: quizState.room, user: player, score: score })
 
     }
   }

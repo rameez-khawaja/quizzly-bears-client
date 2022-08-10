@@ -10,9 +10,6 @@ const Game = () => {
     const quizState = useSelector((state) => state.quizState)
     const player = useSelector((state) => state.player)
     const socket = useSelector(state => state.socket);
-    // const dispatch = useDispatch();
-
-    // console.log(player)
 
     const players = allUsers.map(player =>
         <div className="card m-2 text-center" style={{ width: '120px' }} key={Math.random()}>
@@ -27,7 +24,6 @@ const Game = () => {
 
     return (
         <section>
-
             <div className="d-flex justify-content-center text-center text-light">
                 <h5><b>{quizState.category} - {questionNumber}/10</b></h5>
             </div>

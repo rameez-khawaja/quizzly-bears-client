@@ -107,7 +107,7 @@ const Lobby = () => {
                                     let color = colors[Math.floor(Math.random() * colors.length)];
 
                                     return (
-                                        <section className="d-flex flex-row justify-content-center">
+                                        <section key={Math.random()} className="d-flex flex-row justify-content-center">
                                             <motion.div className="card mx-auto bg-transparent p-1 m-1 position-relative"
                                             key={user.name}
                                             style={{ backgroundColor: color, height:"100px", width: "100px"}}
@@ -133,7 +133,7 @@ const Lobby = () => {
                                         ><img src={picArr[index]} alt="mypic" className="shadow border rounded-circle"/></motion.div>
                                         <motion.div
                                         className="card mx-auto my-auto w-auto border border-dark rounded p-1 shadow"
-                                        key={user.name}
+                                        key={Math.random()}
                                         initial={{ opacity: 0, scale: 0.5 }}
                                         animate={{ opacity: 1, scale: 1 }}
                                         exit={{ opacity: 0, scale: 0.5 }}
