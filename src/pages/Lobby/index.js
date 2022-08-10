@@ -39,7 +39,7 @@ const Lobby = () => {
                         whileHover={{ scale: 1.05 }}
                         transition={{
                             default: {
-                                duration: 0.3,
+                                duration: 2,
                                 ease: [0, 0.71, 0.2, 1.01],
                             },
                             scale: {
