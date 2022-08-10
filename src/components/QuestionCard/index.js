@@ -27,7 +27,7 @@ export default function QuestionCard({ questionDetails, questionNumber }) {
   // collect and shuffle answer cards
   useEffect(() => {
     let questionArray = [];
-    questionArray.push(correct_answer, ...incorrect_answers);
+    questionArray.push(he.decode(correct_answer), he.decode(incorrect_answers[0]), he.decode(incorrect_answers[1]), he.decode(incorrect_answers[2]));
     for (let i = questionArray.length - 1; i > 0; i--) {
       let j = Math.floor(Math.random() * (i + 1));
       let tempItem = questionArray[i];
@@ -35,15 +35,20 @@ export default function QuestionCard({ questionDetails, questionNumber }) {
       questionArray[j] = tempItem;
     }
     setRandomArray(questionArray);
-  }, [question]);
-
-  useEffect(() =>{
     function minusSecond(){
       setTimer(prevTime => prevTime - 1)
     }
     const countDown = setInterval(()=>minusSecond(), 1000)
     return () => clearInterval(countDown)
-  }, [question])
+  }, [question]);
+
+  // useEffect(() =>{
+  //   function minusSecond(){
+  //     setTimer(prevTime => prevTime - 1)
+  //   }
+  //   const countDown = setInterval(()=>minusSecond(), 1000)
+  //   return () => clearInterval(countDown)
+  // }, [question])
 
   useEffect(() => {
     if (timer == 0) {
@@ -74,7 +79,7 @@ export default function QuestionCard({ questionDetails, questionNumber }) {
     }
 
     if (selected === correct_answer && questionNumber <= 10) {
-      let score = 50 + (2.5 * timer);
+      let score = Math.floor(50 + (2.5 * timer));
       dispatch(increaseScore(player, score));
       socket.emit("update player score", {
         room: quizState.room,
