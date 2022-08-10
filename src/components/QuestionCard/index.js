@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Col, Row, Container } from "react-bootstrap";
 import { motion } from "framer-motion";
@@ -18,17 +18,10 @@ export default function QuestionCard({ questionDetails, questionNumber }) {
   const dispatch = useDispatch();
   const { question, category, difficulty, correct_answer, incorrect_answers } =
     questionDetails;
-
-    // TODO: Console logging state to know what to call
-
-  // const state = useSelector((state) => state);
-  // console.log(state);
+  const timerRef = useRef();
 
   // Need counter, counter updates state which is reset when user goes to next question (or when timer runs out)
-  // Need a state that manages the option they choose
-  // That state needs to be compared to correct answer
   // Calculates score with time if answer is correct
-  // Need to check of game is over (done)
   // Dispatch to increase question number every 30 seconds ( only if Q# < 10 otherwise end game)
 
   // collect and shuffle answer cards
@@ -43,6 +36,26 @@ export default function QuestionCard({ questionDetails, questionNumber }) {
     }
     setRandomArray(questionArray);
   }, [question]);
+
+  useEffect(() =>{
+    function minusSecond(){
+      setTimer(prevTime => prevTime - 1)
+    }
+    const countDown = setInterval(()=>minusSecond(), 1000)
+    return () => clearInterval(countDown)
+  }, [question])
+
+  useEffect(() => {
+    if (timer == 0) {
+      if (questionNumber <= 10) {
+        dispatch(increaseQuestionNumber());
+        setTimer(targetTime);
+      } else {
+        setFinishedQuiz(true);
+      }
+    }
+    resetTimer();
+  }, [timer])
 
   // submit players answer AND update score
   function submitAnswer(e) {
@@ -61,8 +74,7 @@ export default function QuestionCard({ questionDetails, questionNumber }) {
     }
 
     if (selected === correct_answer && questionNumber <= 10) {
-      // let score = 50 + (2.5 * timer);
-      let score = 50
+      let score = 50 + (2.5 * timer);
       dispatch(increaseScore(player, score));
       socket.emit("update player score", {
         room: quizState.room,
@@ -85,6 +97,10 @@ export default function QuestionCard({ questionDetails, questionNumber }) {
     exit: {opacity: 0, scale: 0.5}
   }
 
+  const resetTimer = () => {
+    timerRef.current.style.width = `${timer * 10 / 2}%`;
+  }
+  
   return (
     <motion.div
     variants={container}
@@ -92,6 +108,15 @@ export default function QuestionCard({ questionDetails, questionNumber }) {
     animate="show"
     exit="exit"
     >
+      <section className="container col-12 d-flex justify-content-center">
+        <section className="progress-bar-container col-8 py-4">
+          <div className="progress-bar bg-danger rounded">
+            <div className="time-left progress-bar progress-bar-striped progress-bar-animated bg-warning rounded" ref={timerRef}>
+              {timer}
+            </div>
+          </div>
+        </section>
+      </section>
       <motion.div
           className="questioncard row"
           initial={{ opacity: 0, scale: 0.5 }}

@@ -103,7 +103,7 @@ const Results = () => {
         }}
       >
 
-        <motion.button onClick={sendToHome} className="btn mx-auto text-light leaderboard-home"
+        <motion.button onClick={sendToHome} className="btn mx-auto text-light leaderboard-home border border-light"
           initial={{ opacity: 0, scale: 0.5 }}
           animate={{ opacity: 1, scale: 0.8 }}
           exit={{ opacity: 0, scale: 0.5}}
@@ -145,7 +145,7 @@ const Results = () => {
           }
         }}
       >
-         <h1 className="display-1">{`Congratulations, ${sortedUsers[0].name}`}</h1>
+         <h1 className="display-1">{`🎉🎉🎉 Congratulations, ${sortedUsers[0].name} 🎉🎉🎉`}</h1>
 
 
       </motion.h1>
