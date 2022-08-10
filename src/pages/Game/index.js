@@ -15,7 +15,7 @@ const Game = () => {
     // console.log(player)
 
     const players = allUsers.map(player =>
-        <div className="card m-2" style={{ width: '120px' }} key={Math.random()}>
+        <div className="card m-2 text-center" style={{ width: '120px' }} key={Math.random()}>
             <div className="card-body">
                 <h5 className="card-title">{player.name}</h5>
                 <h6 className="card-subtitle">{player.score}</h6>
@@ -27,8 +27,11 @@ const Game = () => {
 
     return (
         <section>
-            <div> Users: </div>
-            <section>
+
+            <div className="d-flex justify-content-center text-center text-light">
+                <h5><b>{quizState.category} - {questionNumber}/10</b></h5>
+            </div>
+            <div>
                 <div className="d-flex justify-content-center">
                     {players}
                 </div>
@@ -37,7 +40,7 @@ const Game = () => {
                         <QuestionCard questionDetails={allQuestions[questionNumber - 1]} questionNumber={questionNumber} />
                     </div>
                 )}
-            </section>
+            </div>
             {questionNumber > 10 && <Navigate to="/results" />}
         </section>
     );
