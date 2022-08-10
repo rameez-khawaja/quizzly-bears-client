@@ -81,18 +81,18 @@ export default function QuestionCard({ questionDetails, questionNumber }) {
       <Container>
         <Row className="seperator">
           <Col onClick={submitAnswer} className="answercard">
-            {randomArray[0]}
+           {he.decode(randomArray[0])}
           </Col>
           <Col onClick={submitAnswer} className="answercard">
-            {randomArray[1]}
+           {he.decode(randomArray[1])}
           </Col>
         </Row>
         <Row className="seperator">
           <Col onClick={submitAnswer} className="answercard">
-            {randomArray[2]}
+           {he.decode(randomArray[2])}
           </Col>
           <Col onClick={submitAnswer} className="answercard">
-            {randomArray[3]}
+           {he.decode(randomArray[3])}
           </Col>
         </Row>
       </Container>
