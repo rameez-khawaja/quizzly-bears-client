@@ -65,15 +65,15 @@ const Lobby = () => {
                                     stiffness: 400,
                                     restDelta: 0.001
                                 }
-                            }}><div className="display-4 player-title">
+                            }}><div className="display-4 player-title waiting">
                                 {data.host}'s Quizzly Game!{" "}
                             </div>
-                            <h2 className="text-primary">Waiting for all players...</h2>
-                            <div className="d-flex flex-column justify-content-center mt-2">
-                                <p className="my-auto mx-auto border-bottom border-dark"
+                            <h2 className="waiting mb-2">Waiting for all players...</h2>
+                            <div className="d-flex flex-row justify-content-center mt-2">
+                                <p className="waiting my-auto mx-auto border-dark"
                                 >Questions: 10</p>
-                                <p className="my-auto mx-auto border-bottom border-dark">Category: {data.category}</p>
-                                <p className="my-auto mx-auto border-bottom border-dark">Difficulty: {data.difficulty}</p>
+                                <p className="waiting my-auto mx-auto border-dark">Category: {data.category}</p>
+                                <p className="waiting my-auto mx-auto border-dark">Difficulty: {data.difficulty}</p>
                             </div>
                         </motion.div>
                         <div className='row mb-3'>
