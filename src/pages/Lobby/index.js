@@ -99,41 +99,41 @@ const Lobby = () => {
                                 </motion.div>
                             </div>
                             <div className='col-4 d-flex flex-sm-column flex-row mt-4'>
-                               
-                                    {data.users.map((user, index) => {
 
-                                        let color = colors[Math.floor(Math.random() * colors.length)];
+                                {data.users.map((user, index) => {
 
-                                        return (
-                                            <div key={Math.random()} className="m-4">
-                                                <motion.div className="card mx-auto bg-transparent p-1 m-1"
-                                                    key={user.name}
-                                                    style={{ backgroundColor: color, height: "100px", width: "100px" }}
-                                                    initial={{ opacity: 0, scale: 0.5 }}
-                                                    animate={{ opacity: 1, scale: 1 }}
-                                                    exit={{ opacity: 0, scale: 0.5 }}
-                                                    whileHover={{ scale: 1.15 }}
-                                                    whileTap={{ scale: 0.85 }}
-                                                    transition={{
-                                                        default: {
-                                                            duration: 0.3,
-                                                            ease: [0, 0.71, 0.2, 1.01],
-                                                        },
-                                                        scale: {
-                                                            type: "spring",
-                                                            damping: 10,
-                                                            stiffness: 200,
-                                                            restDelta: 0.001
-                                                        }
-                                                    }}
-                                                ><img src={picArr[index]} alt="mypic" className="shadow border rounded-circle" />
-                                                    <h4 className="mx-auto my-auto p-1 text-light">{user.name}</h4>{" "}
-                                                </motion.div>
-                                            </div>)
-                                    })
-                                    }
-                                </div>
-                            
+                                    let color = colors[Math.floor(Math.random() * colors.length)];
+
+                                    return (
+                                        <div key={Math.random()} className="m-4">
+                                            <motion.div className="card mx-auto bg-transparent p-1 m-1"
+                                                key={user.name}
+                                                style={{ backgroundColor: color, height: "100px", width: "100px" }}
+                                                initial={{ opacity: 0, scale: 0.5 }}
+                                                animate={{ opacity: 1, scale: 1 }}
+                                                exit={{ opacity: 0, scale: 0.5 }}
+                                                whileHover={{ scale: 1.15 }}
+                                                whileTap={{ scale: 0.85 }}
+                                                transition={{
+                                                    default: {
+                                                        duration: 0.3,
+                                                        ease: [0, 0.71, 0.2, 1.01],
+                                                    },
+                                                    scale: {
+                                                        type: "spring",
+                                                        damping: 10,
+                                                        stiffness: 200,
+                                                        restDelta: 0.001
+                                                    }
+                                                }}
+                                            ><img src={picArr[index]} alt="mypic" className="shadow border rounded-circle" />
+                                                <h4 className="mx-auto my-auto p-1 text-light">{user.name}</h4>{" "}
+                                            </motion.div>
+                                        </div>)
+                                })
+                                }
+                            </div>
+
                         </div>
                         {data.host === user ? (
                             <div className="row mt-5 mb-5">
