@@ -4,6 +4,7 @@ import { Navigate } from "react-router-dom";
 import { startQuiz } from "../../actions";
 import { Chat } from "../../components";
 import {motion} from 'framer-motion'
+import './styles.css';
 import pic1 from '../../images/avatars/avatar1.png';
 import pic2 from '../../images/avatars/avatar2.png';
 import pic3 from '../../images/avatars/avatar3.png';

@@ -5,6 +5,8 @@ import { Routes, Route } from "react-router-dom";
 const io = require("socket.io-client");
 const URL = "http://localhost:3000";
 import './App.css'
+import { AnimatePresence } from "framer-motion";
+import { useLocation } from "react-router-dom";
 
 import {
   changeState,
@@ -20,7 +22,7 @@ const App = () => {
   const currentUser = useSelector((state) => state.player);
   const host = useSelector((state) => state.quizState.host);
   const quizState = useSelector((state) => state.quizState);
-
+  const location = useLocation();
 
   useEffect(() => {
     const newSocket = io(URL);
@@ -56,13 +58,15 @@ const App = () => {
 
 
   return (
-    <Routes>
+    <AnimatePresence exitBeforeEnter>
+    <Routes location={location} key={location.pathname}>
       <Route exact path="/" element={<Home />} />
       <Route path="/lobby" element={<Lobby />} />
       <Route path="/play" element={<Game />} />
       <Route path="/results" element={<Results />} />
       <Route path="/highscores" element={<HighScores />} />
     </Routes>
+    </AnimatePresence>
   );
 }
 
