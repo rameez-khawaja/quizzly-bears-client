@@ -49,7 +49,7 @@ const Lobby = () => {
                                 restDelta: 0.001
                             }
                         }}>
-                        <motion.div className="py-2 text-center col-8 w-100 shadow border border-primary bg-transparent rounded"
+                        <motion.div className="waiting-container py-2 text-center col-8 w-100 shadow border border-secondary bg-transparent rounded"
                             initial={{ opacity: 0, scale: 0.5 }}
                             animate={{ opacity: 1, scale: 1 }}
                             exit={{ opacity: 0, scale: 0.5 }}
