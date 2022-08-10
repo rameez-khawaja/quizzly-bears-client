@@ -12,7 +12,7 @@ export default function QuestionCard({ questionDetails, questionNumber }) {
   const targetTime = 20
   const [randomArray, setRandomArray] = useState([])
   const [timer, setTimer] = useState(targetTime);
-
+  const [finishedQuiz, setFinishedQuiz] = useState(false);
   const quizState = useSelector((state) => state.quizState)
   const socket = useSelector((state) => state.socket)
   const player = useSelector((state) => state.player)
@@ -51,12 +51,14 @@ export default function QuestionCard({ questionDetails, questionNumber }) {
       setTimer(targetTime)
     } else {
       // At game end, sets game as finished in redux
+      setFinishedQuiz(true);
+      console.log('The end');
     }
 
 
 
     if (selected === correct_answer && questionNumber <= 10) {
-      let score = 50 + (2.5 * counter)
+      let score = 50 + (2.5 * timer)
       dispatch(increaseScore(player, score))
       socket.emit('update player score', { room: quizState.room, user: player, score })
 
@@ -78,6 +80,7 @@ export default function QuestionCard({ questionDetails, questionNumber }) {
           <Col onClick={submitAnswer} className="answercard">{randomArray[3]}</Col>
         </Row>
       </Container>
+      {finishedQuiz && <Navigate to='/results' />}
     </div>
   )
 }
@@ -102,4 +105,3 @@ export default function QuestionCard({ questionDetails, questionNumber }) {
 //         restDelta: 0.001
 //     }
 // }}
-

@@ -2,7 +2,6 @@ import React, { useState, useEffect, useRef } from "react";
 import { Navigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { QuestionCard } from "../../components";
-import { Socket } from "socket.io-client";
 
 const Game = () => {
     const questionNumber = useSelector((state) => state.quizState.questionNumber);
@@ -10,6 +9,7 @@ const Game = () => {
     const allUsers = useSelector((state) => state.quizState.users);
     const quizState = useSelector((state) => state.quizState)
     const player = useSelector((state) => state.player)
+    const socket = useSelector(state => state.socket);
     // const dispatch = useDispatch();
 
     // console.log(player)
@@ -23,7 +23,7 @@ const Game = () => {
         </div>
     )
 
-    questionNumber > 10 ? Socket.emit('complete quiz', { room: quizState.room, player: player }) : null
+    questionNumber > 10 ? socket.emit('finish quiz', { room: quizState.room, player: player }) : null
 
     return (
         <section>

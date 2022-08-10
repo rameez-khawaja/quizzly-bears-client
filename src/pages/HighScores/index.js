@@ -19,7 +19,7 @@ const HighScores = () => {
   }
 
   const renderHighScores = scores.map((rank, index) => {
-
+console.log(scores)
     return (
       <motion.div key={index}
         className="card d-flex flex-row mx-2 mt-3 mb-2 p-2 bg-danger shadow highScoreCard"
@@ -43,8 +43,9 @@ const HighScores = () => {
       >
 
         <h1 className="mx-3 my-auto">{index + 1}</h1>
+        <h1 className="mx-2 my-auto text-dark">{rank.username}</h1>
         <h1 className="mx-2 my-auto text-dark">{rank.score}</h1>
-        <h1 className="mx-2 my-auto text-dark">{rank.name}</h1>
+
       </motion.div >
     )
   })
