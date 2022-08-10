@@ -105,7 +105,7 @@ const Lobby = () => {
                                     let color = colors[Math.floor(Math.random() * colors.length)];
 
                                     return (
-                                        <div key={Math.random()} className="m-4">
+                                        <div key={Math.random()} className="m-3">
                                             <motion.div className="card mx-auto bg-transparent p-1 m-1"
                                                 key={user.name}
                                                 style={{ backgroundColor: color, height: "100px", width: "100px" }}
