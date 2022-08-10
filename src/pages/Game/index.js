@@ -2,6 +2,36 @@ import React, { useState, useEffect, useRef } from "react";
 import { Navigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { QuestionCard } from "../../components";
+import { motion, AnimatePresence } from "framer-motion";
+import { Row } from 'react-bootstrap';
+
+
+const containerUser = {
+  hidden: { opacity: 0, scale: 0.5 },
+  show: {
+      opacity: 1,
+      scale: 1,
+      transition: {
+          delay: 1,
+          staggerChildren: 0.65,
+      }
+  },
+  exit: { opacity: 0, scale: 0.5 }
+}
+const containerCategory = {
+  hidden: { opacity: 0, scale: 0.5 },
+  show: {
+      opacity: 1,
+      scale: 1,
+      transition: {
+          delay: 0.5,
+          staggerChildren: 0.65,
+      }
+  },
+  exit: { opacity: 0, scale: 0.5 }
+}
+
+
 
 const Game = () => {
   const questionNumber = useSelector((state) => state.quizState.questionNumber);
@@ -28,28 +58,34 @@ const Game = () => {
     ? socket.emit("finish quiz", { room: quizState.room, player: player })
     : null;
 
+
   return (
     <section>
-      <div className="d-flex justify-content-center text-center text-light">
-        <h5>
-          <b>
-            {quizState.category} - {questionNumber}/10
-          </b>
-        </h5>
-      </div>
-      <div>
-        <div className="d-flex justify-content-center">{players}</div>
-        {questionNumber <= 10 && (
-          <div>
-            <QuestionCard
-              questionDetails={allQuestions[questionNumber - 1]}
-              questionNumber={questionNumber}
-            />
-          </div>
-        )}
-      </div>
-      {questionNumber > 10 && <Navigate to="/results" />}
-    </section>
+      <motion.div className="d-flex justify-content-center text-center text-light"
+                variants={containerCategory}
+                initial="hidden"
+                animate="show"
+                exit="exit">
+                <h5><b>{quizState.category} - {questionNumber}/10</b></h5>
+            </motion.div>
+            <div>
+                <Row>
+                <motion.div className="d-flex justify-content-center"
+                    variants={containerUser}
+                    initial="hidden"
+                    animate="show"
+                    exit="exit">
+                    {players}
+                </motion.div>
+                </Row>
+                {questionNumber <= 10 && (
+                    <AnimatePresence exitBeforeEnter>
+                        <QuestionCard questionDetails={allQuestions[questionNumber - 1]} questionNumber={questionNumber} />
+                    </AnimatePresence>
+                )}
+            </div>
+            {questionNumber > 10 && <Navigate to="/results" />}
+        </section>
   );
 };
 
