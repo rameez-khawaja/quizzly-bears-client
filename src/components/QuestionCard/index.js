@@ -34,8 +34,7 @@ export default function QuestionCard({ questionDetails, questionNumber }) {
   // collect and shuffle answer cards
   useEffect(() => {
     let questionArray = [];
-    questionArray.push(correct_answer);
-    questionArray.push(...incorrect_answers);
+    questionArray.push(correct_answer, ...incorrect_answers);
     for (let i = questionArray.length - 1; i > 0; i--) {
       let j = Math.floor(Math.random() * (i + 1));
       let tempItem = questionArray[i];
@@ -73,31 +72,142 @@ export default function QuestionCard({ questionDetails, questionNumber }) {
     }
   }
 
+  const container = {
+    hidden: { opacity: 0, scale: 0.5 },
+    show: {
+      opacity: 1,
+      scale: 1,
+      transition: {
+        delayChildren: 1,
+        staggerChildren: 0.65,
+      }
+    },
+    exit: {opacity: 0, scale: 0.5}
+  }
+
   return (
-    <div>
-      <Row className="questioncard">
-        <Col>Question: {he.decode(question)}</Col>
-      </Row>
+    <motion.div
+    variants={container}
+    initial="hidden"
+    animate="show"
+    exit="exit"
+    >
+      <motion.div
+          class="questioncard row"
+          initial={{ opacity: 0, scale: 0.5 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    exit={{ opacity: 0, scale: 0.5}}
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.75 }}
+                    transition={{
+                      default: {
+                        duration: 0.3,
+                        ease: [0, 0.71, 0.2, 1.01]
+                      },
+                      scale: {
+                        type: "spring",
+                        damping: 10,
+                        stiffness: 400,
+                        restDelta: 0.001
+                      }
+                    }}
+          >
+        <motion.div className="col"
+                  initial={{ opacity: 0, scale: 0.5 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  exit={{ opacity: 0, scale: 0.5}}
+                  >Question: {he.decode(question)}</motion.div>
+      </motion.div>
       <Container>
         <Row className="seperator">
-          <Col onClick={submitAnswer} className="answercard">
-           {he.decode(randomArray[0])}
-          </Col>
-          <Col onClick={submitAnswer} className="answercard">
-           {he.decode(randomArray[1])}
-          </Col>
+
+          <motion.div onClick={submitAnswer} className="answercard col"
+                  initial={{ opacity: 0, scale: 0.5 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  exit={{opacity: 0, scale: 0.5}}
+                  whileHover={{ scale: 1.05 }}
+                  transition={{
+                    default: {
+                      duration: 0.3,
+                      ease: [0, 0.71, 0.2, 1.01],
+                    },
+                    scale: {
+                      type: "spring",
+                      damping: 10,
+                      stiffness: 400,
+                      restDelta: 0.001
+                    }
+                  }}
+          >
+           {randomArray[0]}
+           </motion.div>
+           <motion.div onClick={submitAnswer} className="answercard col"
+                  initial={{ opacity: 0, scale: 0.5 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  exit={{opacity: 0, scale: 0.5}}
+                  whileHover={{ scale: 1.05 }}
+                  transition={{
+                    default: {
+                      duration: 0.3,
+                      ease: [0, 0.71, 0.2, 1.01],
+                    },
+                    scale: {
+                      type: "spring",
+                      damping: 10,
+                      stiffness: 400,
+                      restDelta: 0.001
+                    }
+                  }}
+          >
+           {randomArray[1]}
+           </motion.div>
         </Row>
         <Row className="seperator">
-          <Col onClick={submitAnswer} className="answercard">
-           {he.decode(randomArray[2])}
-          </Col>
-          <Col onClick={submitAnswer} className="answercard">
-           {he.decode(randomArray[3])}
-          </Col>
+        <motion.div onClick={submitAnswer} className="answercard col"
+                  initial={{ opacity: 0, scale: 0.5 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  exit={{opacity: 0, scale: 0.5}}
+                  whileHover={{ scale: 1.05 }}
+                  transition={{
+                    default: {
+                      duration: 0.3,
+                      ease: [0, 0.71, 0.2, 1.01],
+                    },
+                    scale: {
+                      type: "spring",
+                      damping: 10,
+                      stiffness: 400,
+                      restDelta: 0.001
+                    }
+                  }}
+          >
+           {randomArray[2]}
+           </motion.div>
+
+           <motion.div onClick={submitAnswer} className="answercard col"
+                  initial={{ opacity: 0, scale: 0.5 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  exit={{opacity: 0, scale: 0.5}}
+                  whileHover={{ scale: 1.05 }}
+                  transition={{
+                    default: {
+                      duration: 0.3,
+                      ease: [0, 0.71, 0.2, 1.01],
+                    },
+                    scale: {
+                      type: "spring",
+                      damping: 10,
+                      stiffness: 400,
+                      restDelta: 0.001
+                    }
+                  }}
+          >
+           {randomArray[3]}
+           </motion.div>
         </Row>
       </Container>
       {finishedQuiz && <Navigate to="/results" />}
-    </div>
+      </motion.div>
   );
 }
 
