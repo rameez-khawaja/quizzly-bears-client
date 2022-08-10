@@ -89,13 +89,12 @@ export default function CreateGame() {
                 <form onSubmit={handleFormSubmit} className="card pb-2">
                     <div className='py-2'>
                         <label>Username:</label>
-                        <input label='Username' placeholder="Username" onChange={handleUsername} value={username} className="form-control border-secondary my-2 w-75 mx-auto" />
+                        <input required label='Username' placeholder="Username" onChange={handleUsername} value={username} className="form-control border-secondary my-2 w-75 mx-auto" />
                     </div>
                     <div className='d-flex justify-content-center'>
                         <div className="w-75 mx-lg-5" >
                             <label className="py-2">Category:</label>
-                            <select value={category} onChange={handleCategory} className="form-select border border-secondary rounded">
-                                <option defaultValue="Pick a Category">Pick a Category</option>
+                            <select required value={category} onChange={handleCategory} className="form-select border border-secondary rounded">
                                 {dropdownItems}
                             </select>
                         </div>
