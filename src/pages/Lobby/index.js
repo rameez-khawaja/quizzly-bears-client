@@ -4,7 +4,6 @@ import { Navigate } from "react-router-dom";
 import { startQuiz } from "../../actions";
 import { Chat } from "../../components";
 import {motion} from 'framer-motion'
-import './styles.css';
 import pic1 from '../../images/avatars/avatar1.png';
 import pic2 from '../../images/avatars/avatar2.png';
 import pic3 from '../../images/avatars/avatar3.png';
@@ -36,6 +35,7 @@ console.log(data)
                         <motion.div className="py-2 text-center col-12 mx-auto"
                                         initial={{ opacity: 0, scale: 0.5 }}
                                         animate={{ opacity: 1, scale: 1 }}
+                                        exit={{ opacity: 0, scale: 0.5 }}
                                         whileHover={{ scale: 1.05 }}
                                         transition={{
                                             default: {
@@ -49,37 +49,57 @@ console.log(data)
                                                 restDelta: 0.001
                                             }
                                         }}>
-                            <div className="py-2 text-center col-8 mx-auto shadow border border-primary bg-light rounded">
-                            <motion.div className="display-4 player-title"
-                                        initial={{ opacity: 0, scale: 0.5 }}
-                                        animate={{ opacity: 1, scale: 1 }}
-                                        whileHover={{ scale: 1.05 }}
-                                        transition={{
-                                            default: {
-                                                duration: 0.3,
-                                                ease: [0, 0.71, 0.2, 1.01],
-                                            },
-                                            scale: {
-                                                type: "spring",
-                                                damping: 10,
-                                                stiffness: 400,
-                                                restDelta: 0.001
-                                            }
-                                        }}>
+                            <motion.div className="py-2 text-center col-8 mx-auto shadow border border-primary bg-light rounded"
+                            initial={{ opacity: 0, scale: 0.5 }}
+                            animate={{ opacity: 1, scale: 1 }}
+                            exit={{ opacity: 0, scale: 0.5 }}
+                            whileHover={{ scale: 1.05 }}
+                            transition={{
+                                default: {
+                                    duration: 0.3,
+                                    ease: [0, 0.71, 0.2, 1.01],
+                                },
+                                scale: {
+                                    type: "spring",
+                                    damping: 10,
+                                    stiffness: 400,
+                                    restDelta: 0.001
+                                }
+                            }}>
+                            <div className="display-4 player-title">
                                     {data.host}'s Quizzly Game!{" "}
-                                </motion.div>
+                                </div>
                                 <h2 className="text-primary">Waiting for all players...</h2>
                                 <div className="d-flex flex-column justify-content-center mt-2">
-                                <p className="my-auto mx-auto border-bottom border-dark">Questions: 10</p>
+                                <p className="my-auto mx-auto border-bottom border-dark"
+                                >Questions: 10</p>
                                 <p className="my-auto mx-auto border-bottom border-dark">Category: {data.category}</p>
                                 <p className="my-auto mx-auto border-bottom border-dark">Difficulty: {data.difficulty}</p>
                             </div>
-                            </div>
+                            </motion.div>
                             <section className="row flex-lg-row py-4">
 
                             <section className="col-5 d-flex flex-row justify-content-center">
-                                <div id="message-container"></div>
+                                <motion.div id="message-container"
+                                initial={{ opacity: 0, scale: 0.5 }}
+                                animate={{ opacity: 1, scale: 1 }}
+                                exit={{ opacity: 0, scale: 0.5 }}
+                                whileHover={{ scale: 1.05 }}
+                                transition={{
+                                    default: {
+                                        duration: 0.3,
+                                        ease: [0, 0.71, 0.2, 1.01],
+                                    },
+                                    scale: {
+                                        type: "spring",
+                                        damping: 10,
+                                        stiffness: 400,
+                                        restDelta: 0.001
+                                    }
+                                }}
+                                >
                                 <Chat socket={socket} username={user} room={data.room} />
+                                </motion.div>
                             </section>
                             <div className="col-5 d-flex flex-column">
                                 {data.users.map((user, index) => {
@@ -93,6 +113,7 @@ console.log(data)
                                             style={{ backgroundColor: color, height:"100px", width: "100px"}}
                                         initial={{ opacity: 0, scale: 0.5 }}
                                         animate={{ opacity: 1, scale: 1 }}
+                                        exit={{ opacity: 0, scale: 0.5 }}
                                         whileHover={{ scale: 1.15 }}
                                         whileTap={{ scale: 0.85 }}
                                         transition={{
@@ -115,6 +136,7 @@ console.log(data)
                                         key={user.name}
                                         initial={{ opacity: 0, scale: 0.5 }}
                                         animate={{ opacity: 1, scale: 1 }}
+                                        exit={{ opacity: 0, scale: 0.5 }}
                                         style={{backgroundColor: color}}
                                         whileHover={{ scale: 1.15 }}
                                         whileTap={{ scale: 0.85 }}
@@ -143,17 +165,49 @@ console.log(data)
                             </section>
                             {data.host === user ? (
                                 <div className="container d-flex flex-column align-items-center">
-                                    <div className="card text-center my-2 mx-auto shadow border border-primary bg-light rounded">
+                                    <motion.div className="card text-center my-2 mx-auto shadow border border-primary bg-light rounded"
+                                     initial={{ opacity: 0, scale: 0.5 }}
+                                     animate={{ opacity: 1, scale: 1 }}
+                                     exit={{ opacity: 0, scale: 0.5 }}
+                                     whileHover={{ scale: 1.05 }}
+                                     transition={{
+                                         default: {
+                                             duration: 0.3,
+                                             ease: [0, 0.71, 0.2, 1.01],
+                                         },
+                                         scale: {
+                                             type: "spring",
+                                             damping: 10,
+                                             stiffness: 400,
+                                             restDelta: 0.001
+                                         }
+                                     }}>
                                         <div className="p-1">
                                             Share room ID: <b>{data.room}</b>
                                         </div>
-                                    </div>
-                                    <button
+                                    </motion.div>
+                                    <motion.button
                                         onClick={handleClick}
                                         className="btn btn-danger btn-lg my-auto py-auto shadow"
+                                        initial={{ opacity: 0, scale: 0.5 }}
+                                        animate={{ opacity: 1, scale: 1 }}
+                                        exit={{ opacity: 0, scale: 0.5 }}
+                                        whileHover={{ scale: 1.05 }}
+                                        transition={{
+                                            default: {
+                                                duration: 0.3,
+                                                ease: [0, 0.71, 0.2, 1.01],
+                                            },
+                                            scale: {
+                                                type: "spring",
+                                                damping: 10,
+                                                stiffness: 400,
+                                                restDelta: 0.001
+                                            }
+                                        }}
                                     >
                                         START GAME
-                                    </button>
+                                    </motion.button>
                                 </div>
                             ) : (
                                 <div className="container d-flex flex-column align-items-center">

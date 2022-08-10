@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { stateLogger } from "./stateLogger"
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import React from "react";
 
 const Backdrop = ({ children, onClick }) => {

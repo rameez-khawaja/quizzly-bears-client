@@ -79,8 +79,8 @@ const Home = () => {
         <motion.h1
         className='title'
         initial={{ opacity: 0, scale: 0.5 }}
-        animate={{ opacity: 1, scale: 0.7 }}
-        exit={{ opacity: 0, scale: 0, x: "-100vh"}}
+        animate={{ opacity: 1, scale: 0.9 }}
+        exit={{ opacity: 0, scale: 0.5}}
         whileHover={{ scale: 0.8 }}
         whileTap={{ scale: 0.75 }}
         transition={{
@@ -105,6 +105,7 @@ const Home = () => {
                     <motion.div className="card px-1 pt-1"
                     initial={{ opacity: 0, scale: 0.5 }}
                     animate={{ opacity: 1, scale: 1 }}
+                    exit={{ opacity: 0, scale: 0.5}}
                     whileHover={{ scale: 1.05 }}
                     transition={{
                         default: {
