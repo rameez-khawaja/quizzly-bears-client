@@ -19,7 +19,7 @@ const HighScores = () => {
   }
 
   const renderHighScores = scores.map((rank, index) => {
-console.log(scores)
+// console.log(scores)
     return (
       <motion.div key={index}
         className="card d-flex flex-row mx-2 mt-3 mb-2 p-2 bg-danger shadow highScoreCard"
@@ -57,7 +57,7 @@ console.log(scores)
         className='title card py-sm-2 px-sm-3 mb-4  bg-warning'
         initial={{ opacity: 0, scale: 0.5 }}
         animate={{ opacity: 1, scale: 0.7 }}
-        exit={{ opacity: 0, scale: 0, x: "-100vh" }}
+        exit={{ opacity: 0, scale: 0.5}}
         whileHover={{ scale: 0.8 }}
         whileTap={{ scale: 0.75 }}
         transition={{
@@ -80,6 +80,7 @@ console.log(scores)
       <motion.div className="card d-flex flex-column pt-4 px-4 pb-1 shadow"
         initial={{ opacity: 0, scale: 0.9 }}
         animate={{ opacity: 1, scale: 1 }}
+        exit={{ opacity: 0, scale: 0.5}}
         whileHover={{ scale: 1.05 }}
         transition={{
           default: {
@@ -98,9 +99,10 @@ console.log(scores)
 
 
 
-        <motion.button onClick={sendToHome} className="btn btn-transparent mx-auto border"
+        <motion.button onClick={sendToHome} className="btn mx-auto text-light leaderboard-home"
           initial={{ opacity: 0, scale: 0.5 }}
           animate={{ opacity: 1, scale: 0.8 }}
+          exit={{ opacity: 0, scale: 0.5}}
           whileHover={{ scale: 0.85 }}
           transition={{
             default: {
