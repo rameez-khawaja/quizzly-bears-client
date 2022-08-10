@@ -4,14 +4,15 @@ import { useSelector, useDispatch } from "react-redux";
 import {motion} from 'framer-motion';
 import { Navigate, useNavigate } from 'react-router-dom'
 import './styles.css'
+import axios from "axios";
 
 const HighScores = () => {
   const [scores, setScores] = useState([]);
-const navigate = useNavigate();
-  // useEffect(async () => {
-  //     const { scoreData } = await axios.get("https://localhost:3000/highscores");
-  //     setScores(scoreData);
-  //   }, []);
+  const navigate = useNavigate();
+  useEffect(async () => {
+      const scoreData  = await axios.get("http://localhost:3000/highscores");
+      setScores(scoreData.data);
+    }, []);
 
   function sendToHome() {
     navigate('/');
@@ -20,9 +21,10 @@ const navigate = useNavigate();
   // real data is scores
   let dummyData = [{name: "elliot", score: "260"}, {name: "rameez", score: "910"},{name: "allan", score: "250"},{name: "harry", score: "440"},]
 
-  const renderHighScores = dummyData.map((rank, index) => {
+  const renderHighScores = scores.map((rank, index) => {
+    
      return (
-     <motion.div
+     <motion.div key={index}
      className="card d-flex flex-row mx-2 mt-3 mb-2 p-2 bg-danger shadow highScoreCard"
      initial={{ opacity: 0, scale: 0.7 }}
      animate={{ opacity: 1, scale: 0.9 }}
@@ -42,8 +44,8 @@ const navigate = useNavigate();
        }
      }}
    >         <h1 className="mx-3 my-auto">{index + 1}</h1>
+        <h1 className="mx-2 my-auto text-dark">{rank.username}</h1>
         <h1 className="mx-2 my-auto text-dark">{rank.score}</h1>
-        <h1 className="mx-2 my-auto text-dark">{rank.name}</h1>
     </motion.div>
      )
   })
@@ -92,8 +94,7 @@ const navigate = useNavigate();
                         }
                     }}
                     >
-        {renderHighScores}
-        <motion.button onClick={sendToHome} className="btn btn-transparent mx-auto border"
+                <motion.button onClick={sendToHome} className="btn btn-transparent mx-auto border"
                             initial={{ opacity: 0, scale: 0.5 }}
                             animate={{ opacity: 1, scale: 0.8 }}
                             whileHover={{ scale: 0.85 }}
@@ -109,6 +110,8 @@ const navigate = useNavigate();
                                     restDelta: 0.001
                                 }
                             }}>Home</motion.button>
+        {renderHighScores}
+
       </motion.div>
     </main>
   );
