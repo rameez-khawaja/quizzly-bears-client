@@ -142,6 +142,10 @@ body {
     padding-right: 10%;
   }
 
+  .border-secondary {
+    border: 1px solid rgba(33, 37, 41, 0.2) !important;
+  }
+
 @keyframes gradient {
 	0% {
 		background-position: 0% 50%;

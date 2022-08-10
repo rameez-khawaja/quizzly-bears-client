@@ -32,7 +32,7 @@ const Results = () => {
                     className="card d-flex flex-row mx-2 mt-3 mb-2 p-2 bg-danger shadow highScoreCard"
                     initial={{ opacity: 0, scale: 0.7 }}
                     animate={{ opacity: 1, scale: 0.9 }}
-                    exit={{ opacity: 0, scale: 0, x: "-100vh" }}
+                    exit={{ opacity: 0, scale: 0}}
                     whileHover={{ scale: 0.95 }}
                     whileTap={{ scale: 0.85 }}
                     transition={{
