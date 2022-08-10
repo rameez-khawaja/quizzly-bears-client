@@ -13,7 +13,7 @@ const Lobby = () => {
     const data = useSelector((state) => state.quizState);
     const user = useSelector((state) => state.player);
     const socket = useSelector((state) => state.socket);
-    console.log(data)
+    // console.log(data)
     const dispatch = useDispatch();
 
     const colors = ["lightred", "lightgreen", "lightblue", "orange", "yellow", "pink"];

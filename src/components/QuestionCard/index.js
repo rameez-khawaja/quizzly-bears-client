@@ -21,8 +21,8 @@ export default function QuestionCard({ questionDetails, questionNumber }) {
 
     // TODO: Console logging state to know what to call
 
-  const state = useSelector((state) => state);
-  console.log(state);
+  // const state = useSelector((state) => state);
+  // console.log(state);
 
   // Need counter, counter updates state which is reset when user goes to next question (or when timer runs out)
   // Need a state that manages the option they choose
@@ -49,7 +49,7 @@ export default function QuestionCard({ questionDetails, questionNumber }) {
   function submitAnswer(e) {
     const selected = e.target.textContent;
     setPlayerAnswer(selected);
-    console.log(selected);
+    // console.log(selected);
     if (questionNumber <= 10) {
       // move player to the next question
       dispatch(increaseQuestionNumber());
@@ -58,7 +58,7 @@ export default function QuestionCard({ questionDetails, questionNumber }) {
     } else {
       // At game end, sets game as finished in redux
       setFinishedQuiz(true);
-      console.log("The end");
+      // console.log("The end");
     }
 
     if (selected === correct_answer && questionNumber <= 10) {

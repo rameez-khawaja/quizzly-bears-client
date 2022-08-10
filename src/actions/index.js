@@ -49,7 +49,7 @@ const increaseQuestionNumber = () => {
 const increaseScore = (player, score) => {
     return {
         type: 'INCREASE_SCORE',
-        "user": player,
+        "player": player,
         "score": score
     }
 }

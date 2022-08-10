@@ -27,6 +27,7 @@ const Game = () => {
   questionNumber > 10
     ? socket.emit("finish quiz", { room: quizState.room, player: player })
     : null;
+
   return (
     <section>
       <div className="d-flex justify-content-center text-center text-light">

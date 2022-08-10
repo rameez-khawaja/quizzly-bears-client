@@ -32,7 +32,7 @@ const quizzlyReducer = (state = initState, action) => {
       };
     case 'FINISHED_QUIZ':
     let finishedUsersArr = [...state.quizState.users];
-    let playerIndex = finishedUsersArr.findindex(player => player.name === action.name)
+    let playerIndex = finishedUsersArr.findIndex(player => player.name === action.payload)
     finishedUsersArr[playerIndex].completed = true;
     return {
       ...state,
