@@ -131,7 +131,15 @@ body {
   .waiting {
     color: white;
     font-family: 'GT Walsheim Pro';
+  }
 
+  .mb-2 {
+    margin-bottom: 40px !important;
+  }
+  
+  .flex-row {
+    padding-left: 10%;
+    padding-right: 10%;
   }
 
 @keyframes gradient {
