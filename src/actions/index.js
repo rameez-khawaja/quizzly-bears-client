@@ -46,14 +46,12 @@ const increaseQuestionNumber = () => {
     }
 }
 
-const increaseScore = (user, score) => {
+const increaseScore = (player, score) => {
     return {
         type: 'INCREASE_SCORE',
-        "user": user,
+        "player": player,
         "score": score
     }
 }
 
 export { storeSocket, changeState, storeUser, addUser, startQuiz, quizFinished, increaseQuestionNumber, increaseScore };
-
-

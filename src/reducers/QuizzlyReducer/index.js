@@ -32,7 +32,7 @@ const quizzlyReducer = (state = initState, action) => {
       };
     case 'FINISHED_QUIZ':
     let finishedUsersArr = [...state.quizState.users];
-    let playerIndex = finishedUsersArr.findindex(player => player.name === action.name)
+    let playerIndex = finishedUsersArr.findIndex(player => player.name === action.payload)
     finishedUsersArr[playerIndex].completed = true;
     return {
       ...state,
@@ -48,10 +48,10 @@ const quizzlyReducer = (state = initState, action) => {
     case 'INCREASE_SCORE':
       let newUsers = [...state.quizState.users];
       let userIndex = newUsers.findIndex(item => item.name === action.player);
-      newUsers[userIndex].score += action.score;
+      newUsers[userIndex].score += action.score
       return {
         ...state,
-        gameState: { ...state.gameState, users: newUsers }
+        quizState: { ...state.quizState, users: newUsers }
       };
     default:
       return state;

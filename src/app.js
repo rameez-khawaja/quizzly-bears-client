@@ -31,8 +31,8 @@ const App = () => {
       dispatch(changeState(state));
     });
 
-    newSocket.on("update opponent completion", (user) => {
-      dispatch(quizFinished(user));
+    newSocket.on("update opponent completion", (currentUser) => {
+      dispatch(quizFinished(currentUser));
     });
 
     dispatch(storeSocket(newSocket));
@@ -41,12 +41,12 @@ const App = () => {
 
   useEffect(() => {
     if (socket) {
-      socket.on("user joining lobby", (user) => {
+      socket.on("user joining lobby", (player) => {
         if (currentUser === host) {
-          dispatch(addUser(user));
+          dispatch(addUser(player));
           let newGame = { ...quizState };
           quizState.users.push({
-            name: user,
+            name: player,
             score: 0,
             completed: false
           })
