@@ -1,8 +1,19 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef, useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
 import {motion} from 'framer-motion';
 import { useSelector, useDispatch } from "react-redux";
+import ReactCanvasConfetti from "react-canvas-confetti";
 import axios from 'axios'
+
+const canvasStyles = {
+  position: "fixed",
+  pointerEvents: "none",
+  width: "100%",
+  height: "100%",
+  top: 0,
+  left: 0
+};
+
 const Results = () => {
     const quizState = useSelector((state) => state.quizState);
     const player = useSelector((state) => state.player);
@@ -24,6 +35,64 @@ const Results = () => {
         navigate('/');
       }
 
+      // Below is the confetti config (React-canvas-confetti specific)
+
+      const canvasStyles = {
+        position: "fixed",
+        pointerEvents: "none",
+        width: "100%",
+        height: "100%",
+        top: 0,
+        left: 0
+      };
+
+      function getAnimationSettings(angle, originX) {
+        return {
+          particleCount: 3,
+          angle,
+          spread: 55,
+          origin: { x: originX },
+          colors: ["#bb0000", "#ffffff"],
+        };
+      }
+
+        const refAnimationInstance = useRef(null);
+        const [intervalId, setIntervalId] = useState();
+      
+        const getInstance = useCallback((instance) => {
+          refAnimationInstance.current = instance;
+        }, []);
+      
+        const nextTickAnimation = useCallback(() => {
+          if (refAnimationInstance.current) {
+            refAnimationInstance.current(getAnimationSettings(60, 0));
+            refAnimationInstance.current(getAnimationSettings(120, 1));
+          }
+        }, []);
+      
+        const startAnimation = useCallback(() => {
+          if (!intervalId) {
+            setIntervalId(setInterval(nextTickAnimation, 16));
+          }
+        }, [nextTickAnimation, intervalId]);
+      
+        const pauseAnimation = useCallback(() => {
+          clearInterval(intervalId);
+          setIntervalId(null);
+        }, [intervalId]);
+      
+        useEffect(() => {
+          return () => {
+            clearInterval(intervalId);
+          };
+        }, [intervalId]);
+
+        useEffect(() => {
+          setTimeout(() => startAnimation(), 200);
+          setTimeout(() => pauseAnimation(), 15000);
+        }, []);
+
+      
 
         const renderEndGameResults = sortedUsers.map((player, index) => {
             // console.log(scores)
@@ -56,8 +125,10 @@ const Results = () => {
                   </motion.div >
                 )
               })
+            
 
     return (
+      <>
     <main className="d-flex flex-column justify-content-center">
 
       <motion.h1
@@ -151,6 +222,8 @@ const Results = () => {
       </motion.h1>
 }
     </main >
+    <ReactCanvasConfetti refConfetti={getInstance} style={canvasStyles} />
+    </>
     )
 }
 
