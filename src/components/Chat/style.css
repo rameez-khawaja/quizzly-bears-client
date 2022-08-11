@@ -44,12 +44,11 @@
   width: auto;
   height: auto;
   min-height: 40px;
-  max-width: 120px;
+  max-width: 140px;
   background-color: #70a2d1;
   border-radius: 5px;
   color: white;
   display: flex;
-  align-items: center;
   margin-right: 5px;
   margin-left: 5px;
   padding-right: 5px;
@@ -64,6 +63,7 @@
 
 #you .message-content {
   justify-content: flex-start;
+  text-align: start;
 }
 
 #you .message-meta {
@@ -73,11 +73,13 @@
 
 #other {
   justify-content: flex-end;
+
 }
 
 #other .message-content {
   justify-content: flex-end;
   background-color: cornflowerblue;
+  text-align: start;
 }
 
 #other .message-meta {
@@ -112,5 +114,5 @@
 input {
   background-color: transparent;
   border: none;
-  
+
 }

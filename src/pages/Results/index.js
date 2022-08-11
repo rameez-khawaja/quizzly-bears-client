@@ -79,6 +79,8 @@ const Results = () => {
     setIntervalId(null);
   }, [intervalId]);
 
+
+
   useEffect(() => {
     return () => {
       clearInterval(intervalId);
@@ -86,9 +88,11 @@ const Results = () => {
   }, [intervalId]);
 
   useEffect(() => {
+    if(everyoneFinished) {
     setTimeout(() => startAnimation(), 200);
     setTimeout(() => pauseAnimation(), 10000);
-  }, []);
+  }
+  }, [everyoneFinished]);
 
 
 
@@ -238,7 +242,7 @@ const Results = () => {
               restDelta: 0.001
             }
           }}><b>Tell your friends how smart you are!</b></motion.div>
-          <motion.div 
+          <motion.div
                       initial={{ opacity: 0, scale: 0.5 }}
                       animate={{ opacity: 1, scale: 1 }}
                       exit={{ opacity: 0, scale: 0.5 }}
@@ -259,7 +263,9 @@ const Results = () => {
           </motion.div>
         </div>
       </main >
+
       <ReactCanvasConfetti refConfetti={getInstance} style={canvasStyles} />
+
 
     </>
   )

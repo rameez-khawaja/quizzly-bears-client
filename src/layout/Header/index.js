@@ -1,8 +1,15 @@
-import React from 'react'
+import React, {useState, useEffect} from 'react'
 import {motion, AnimatePresence} from "framer-motion"
 
+const audioTune = new Audio('./the-catchy-tune.mp3');
+
+
 const Header = () => {
+
     return (
+        <>
+        <audio media-player="audioPlayer" autoplay preload="auto" id="audioElement"
+                crossOrigin="anonymous" src={audioTune}></audio>
         <section className="container">
             <header className="text-center py-3 mx-5">
                 <div>
@@ -22,7 +29,10 @@ const Header = () => {
                 </div>
                 <hr className="mx-5 bg-dark"/>
              </header>
+
         </section>
+      </>
+
      );
 }
 
