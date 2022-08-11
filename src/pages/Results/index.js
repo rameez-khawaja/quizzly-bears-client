@@ -18,10 +18,8 @@ const Results = () => {
   const everyoneFinished = users.every((user) => user.completed)
   const [submitted, setSubmitted] = useState(false)
 
-  console.log(state)
 
   useEffect(() => {
-    console.log("highscore use effect ran")
     if (submitted==false){
       axios.post('http://localhost:3000/low', {
       username: player,

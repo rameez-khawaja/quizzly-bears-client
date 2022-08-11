@@ -25,22 +25,23 @@ const App = () => {
   const location = useLocation();
 
   useEffect(() => {
-    const newSocket = io(URL);
+      const newSocket = io(URL);
 
-    newSocket.on("change state", (state) => {
-      dispatch(changeState(state));
-    });
+      newSocket.on("change state", (state) => {
+        dispatch(changeState(state));
+      });
 
-    newSocket.on("update all scores", ({player, score}) => {
-      dispatch(increaseScore(player, score));
-    })
+      newSocket.on("update all scores", ({player, score}) => {
+        dispatch(increaseScore(player, score));
+      })
 
-    newSocket.on("update opponent completion", (currentUser) => {
-      dispatch(quizFinished(currentUser));
-    });
+      newSocket.on("update opponent completion", (currentUser) => {
+        dispatch(quizFinished(currentUser));
+      });
 
-    dispatch(storeSocket(newSocket));
-    setSocket(newSocket);
+      dispatch(storeSocket(newSocket));
+      setSocket(newSocket);
+  
   }, []);
 
   useEffect(() => {
