@@ -1,10 +1,8 @@
 import React, { useEffect, useState } from "react";
 import ScrollToBottom from "react-scroll-to-bottom";
 import "./style.css";
-// import Picker from 'emoji-picker-react';
 
 function Chat({ socket, username, room }) {
-  // console.log(room, socket, username);
   const [currentMessage, setCurrentMessage] = useState("");
   const [messageList, setMessageList] = useState([]);
   const [chosenEmoji, setChosenEmoji] = useState(null);

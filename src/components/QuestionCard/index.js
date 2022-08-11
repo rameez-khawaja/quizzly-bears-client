@@ -66,7 +66,6 @@ export default function QuestionCard({ questionDetails, questionNumber }) {
   function submitAnswer(e) {
     const selected = e.target.textContent;
     setPlayerAnswer(selected);
-    // console.log(selected);
     if (questionNumber <= 10) {
       // move player to the next question
       dispatch(increaseQuestionNumber());
@@ -75,7 +74,6 @@ export default function QuestionCard({ questionDetails, questionNumber }) {
     } else {
       // At game end, sets game as finished in redux
       setFinishedQuiz(true);
-      // console.log("The end");
     }
 
     if (selected === correct_answer && questionNumber <= 10) {

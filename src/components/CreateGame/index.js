@@ -11,7 +11,6 @@ const categoryMap = {
     "Entertainment: Comics": 29,
     "Entertainment: Film": 11,
     "Entertainment: Music": 12,
-    "Entertainment: Musicals & Theatres": 13,
     "Entertainment: Television": 14,
     "Entertainment: Video Games": 15,
     "Entertainment: Japanese Anime & Manga": 31,
@@ -29,13 +28,12 @@ const categoryMap = {
     "Celebrities": 26,
     "Animals": 27,
     "Vehicles": 28,
-    "Science: Gadgets": 30
 };
 
 export default function CreateGame() {
 
     const [username, setUsername] = useState("");
-    const [category, setCategory] = useState("");
+    const [category, setCategory] = useState("General Knowledge");
     const [difficulty, setDifficulty] = useState("easy");
     const [lobbyCode, setLobbyCode] = useState("");
     const [checkForm, setCheckForm] = useState(false);
@@ -55,6 +53,7 @@ export default function CreateGame() {
 
     async function getQuestions(cat, diff) {
         const url = `https://opentdb.com/api.php?amount=10&category=${categoryMap[cat]}&difficulty=${diff}&type=multiple`;
+        console.log(url)
         const { data } = await axios.get(url);
         return data.results;
     }
