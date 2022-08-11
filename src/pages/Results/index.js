@@ -20,12 +20,11 @@ const Results = () => {
 
 
   useEffect(() => {
-    console.log("highscore use effect ran")
-    if (submitted == false) {
+    if (submitted==false){
       axios.post('http://localhost:3000/low', {
-        username: player,
-        score: scoreToSubmit
-      })
+      username: player,
+      score: scoreToSubmit
+        })
       setSubmitted(true)
     }
   }, [])
@@ -222,8 +221,42 @@ const Results = () => {
         }
 
         <div className='container w-75 text-center mb-5'>
-          <div className='text-white mb-1'><b>Tell your friends how smart you are!</b></div>
-          <Chat socket={state.socket} username={player} room={quizState.room} />
+          <motion.div className='tell text-white mb-1'
+          initial={{ opacity: 0, scale: 0.5 }}
+          animate={{ opacity: 1, scale: 1 }}
+          exit={{ opacity: 0, scale: 0.5 }}
+          whileHover={{ scale: 1.02 }}
+          transition={{
+            default: {
+              duration: 0.3,
+              ease: [0, 0.71, 0.2, 1.01]
+            },
+            scale: {
+              type: "spring",
+              damping: 10,
+              stiffness: 400,
+              restDelta: 0.001
+            }
+          }}><b>Tell your friends how smart you are!</b></motion.div>
+          <motion.div 
+                      initial={{ opacity: 0, scale: 0.5 }}
+                      animate={{ opacity: 1, scale: 1 }}
+                      exit={{ opacity: 0, scale: 0.5 }}
+                      whileHover={{ scale: 1.02 }}
+                      transition={{
+                        default: {
+                          duration: 0.3,
+                          ease: [0, 0.71, 0.2, 1.01]
+                        },
+                        scale: {
+                          type: "spring",
+                          damping: 10,
+                          stiffness: 400,
+                          restDelta: 0.001
+                        }
+                      }}>
+          <Chat className="chatbox" socket={state.socket} username={player} room={quizState.room} />
+          </motion.div>
         </div>
       </main >
       <ReactCanvasConfetti refConfetti={getInstance} style={canvasStyles} />

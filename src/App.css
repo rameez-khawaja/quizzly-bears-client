@@ -146,6 +146,23 @@ body {
     border: 1px solid rgba(33, 37, 41, 0.2) !important;
   }
 
+  .chat {
+    border-color: rgba(33, 37, 41, 0.2) !important;
+  }
+
+  input::placeholder {
+    color: rgba(33, 37, 41,.5)
+  }
+
+  .tell {
+    margin-top: 40px;
+    font-family: 'Lol';
+  }
+
+  .chat-window {
+    max-width: 700px;
+  }
+
 @keyframes gradient {
 	0% {
 		background-position: 0% 50%;
