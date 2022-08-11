@@ -22,7 +22,6 @@ const categoryMap = {
     "Sports": 21,
     "Geography": 22,
     "History": 23,
-    "Celebrities": 26,
     "Animals": 27,
     "Vehicles": 28,
 };
