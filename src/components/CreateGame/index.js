@@ -49,7 +49,6 @@ export default function CreateGame() {
 
     async function getQuestions(cat, diff) {
         const url = `https://opentdb.com/api.php?amount=10&category=${categoryMap[cat]}&difficulty=${diff}&type=multiple`;
-        console.log(url)
         const { data } = await axios.get(url);
         return data.results;
     }
@@ -81,7 +80,7 @@ export default function CreateGame() {
 
         <section className='col-12 py-5'>
             <div className='container bg-light card text-center py-3 col-lg-4 col-md-6 col-sm-8 col-12 w-auto'>
-                <form onSubmit={handleFormSubmit} className="card pb-2">
+                <form onSubmit={handleFormSubmit} className="card pb-2" role="form">
                     <div className='py-2'>
                         <label>Username:</label>
                         <input required label='Username' placeholder="Username" onChange={handleUsername} value={username} className="form-control border-secondary my-2 w-75 mx-auto" />

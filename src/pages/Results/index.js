@@ -12,10 +12,10 @@ const Results = () => {
   const state = useSelector((state) => state);
   const users = useSelector((state) => state.quizState.users);
   const navigate = useNavigate();
-  const sortedUsers = users.sort((a, b) => b.score - a.score);
-  const playerScoreIndex = quizState.users.findIndex(i => i.name === player)
-  let scoreToSubmit = quizState.users[playerScoreIndex].score
-  const everyoneFinished = users.every((user) => user.completed)
+  const sortedUsers = users && users.sort((a, b) => b.score - a.score);
+  const playerScoreIndex = quizState.users && quizState.users.findIndex(i => i.name === player)
+  let scoreToSubmit = quizState.users && quizState.users[playerScoreIndex].score
+  const everyoneFinished = users&& users.every((user) => user.completed)
   const [submitted, setSubmitted] = useState(false)
 
 
@@ -96,8 +96,7 @@ const Results = () => {
 
 
 
-  const renderEndGameResults = sortedUsers.map((player, index) => {
-    // console.log(scores)
+  const renderEndGameResults = sortedUsers && sortedUsers.map((player, index) => {
     return (
       <motion.div key={index}
         className="card d-flex flex-row mx-2 mt-3 mb-2 p-2 bg-danger shadow highScoreCard"
@@ -259,7 +258,7 @@ const Results = () => {
                           restDelta: 0.001
                         }
                       }}>
-          <Chat className="chatbox" socket={state.socket} username={player} room={quizState.room} />
+          {sortedUsers &&<Chat className="chatbox" socket={state.socket} username={player} room={quizState.room} />}
           </motion.div>
         </div>
       </main >

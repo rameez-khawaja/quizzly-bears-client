@@ -39,7 +39,7 @@ const Lobby = () => {
     }
 
     return (
-        <section className='container'>
+        <section className='container' role="container">
             {data.users && (
                 <div className='row justify-content-md-center'>
                     <motion.div className="col-10 mx-auto py-2 text-center"

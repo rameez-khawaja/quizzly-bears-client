@@ -114,7 +114,7 @@ export default function QuestionCard({ questionDetails, questionNumber }) {
       <section className="container col-12 d-flex justify-content-center">
         <section className="progress-bar-container col-8 py-4">
           <div className="progress-bar bg-danger rounded">
-            <div className="time-left progress-bar progress-bar-striped progress-bar-animated bg-warning rounded" ref={timerRef}>
+            <div className="time-left progress-bar progress-bar-striped progress-bar-animated bg-warning rounded" ref={timerRef} role="bar">
               {timer}
             </div>
           </div>
@@ -239,39 +239,4 @@ export default function QuestionCard({ questionDetails, questionNumber }) {
   );
 }
 
-// <motion.div
-// initial={{ opacity: 0, scale: 0.5 }}
-// animate={{ opacity: 1, scale: 1 }}
-// whileHover={{ scale: 1.05 }}
-// transition={{
-//     default: {
-//         duration: 0.3,
-//         ease: [0, 0.71, 0.2, 1.01],
-//     },
-//     scale: {
-//         type: "spring",
-//         damping: 10,
-//         stiffness: 400,
-//         restDelta: 0.001
-//     }
-// }}
 
-
-        // <div class="questioncard row">
-        //   <div class="col">Question: What is the stage name of English female rapper Mathangi Arulpragasam, who is known for the song "Paper Planes"?
-        //   </div>
-        // </div>
-        // <div class="container">
-        //   <div class="seperator row">
-        //     <div class="answercard col">K.I.A.
-        //     </div>
-        //     <div class="answercard col">M.I.A.
-        //     </div>
-        //   </div>
-        //   <div class="seperator row">
-        //     <div class="answercard col">C.I.A.
-        //     </div>
-        //     <div class="answercard col">A.I.A.
-        //     </div>
-        //   </div>
-        // </div>

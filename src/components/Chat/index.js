@@ -37,7 +37,7 @@ function Chat({ socket, username, room }) {
       Chat <i className="fa-solid fa-comment-dots"></i>
             </div>
       <div className="chat-body">
-        <ScrollToBottom className="message-container">
+        <ScrollToBottom className="message-container" role="scrollable">
           {messageList.map((messageContent) => {
             return (
               <div

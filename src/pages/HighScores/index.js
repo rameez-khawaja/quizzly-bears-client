@@ -10,8 +10,8 @@ const HighScores = () => {
   const [scores, setScores] = useState([]);
   const navigate = useNavigate();
   useEffect(async () => {
-    const scoreData = await axios.get("https://quizzlybears.herokuapp.com/highscores");
-    setScores(scoreData.data);
+      const scoreData = await axios.get("https://quizzlybears.herokuapp.com/highscores");
+      setScores(scoreData.data);
   }, []);
 
   function sendToHome() {

@@ -39,7 +39,7 @@ const Game = () => {
   const player = useSelector((state) => state.player);
   const socket = useSelector((state) => state.socket);
 
-  const players = allUsers.map((player) => (
+  const players = allUsers && allUsers.map((player) => (
     <div
       className="card m-2 text-center"
       style={{ width: "120px" }}
