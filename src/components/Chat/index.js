@@ -25,12 +25,6 @@ function Chat({ socket, username, room }) {
     }
   };
 
-
-  const onEmojiClick = (event, emojiObject) => {
-    setChosenEmoji(emojiObject);
-  };
-
-
   useEffect(() => {
     socket.on("receive_message", (data) => {
       setMessageList((list) => [...list, data]);
@@ -39,7 +33,7 @@ function Chat({ socket, username, room }) {
 
   return (
     <div className="chat-window card shadow">
-      <div className="chat border-bottom border-primary text-primary">
+      <div className="chat border-bottom border-primary text-light">
       Chat <i className="fa-solid fa-comment-dots"></i>
             </div>
       <div className="chat-body">
@@ -78,7 +72,7 @@ function Chat({ socket, username, room }) {
             event.key === "Enter" && sendMessage();
           }}
           className="w-100" />
-        <button className="btn btn-primary" onClick={sendMessage}>Submit</button>
+        <button className="btn btn-transparent text-white" onClick={sendMessage}><b>Send</b></button>
       </div>
     </div>
   );
