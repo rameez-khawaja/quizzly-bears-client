@@ -22,11 +22,11 @@ const Results = () => {
 
   useEffect(() => {
     console.log("highscore use effect ran")
-    if (submitted==false){
+    if (submitted == false) {
       axios.post('http://localhost:3000/low', {
-      username: player,
-      score: scoreToSubmit
-        })
+        username: player,
+        score: scoreToSubmit
+      })
       setSubmitted(true)
     }
   }, [])

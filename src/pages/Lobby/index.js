@@ -27,6 +27,17 @@ const Lobby = () => {
         socket.emit("send state to players", newState);
     }
 
+    function copyCode(e) {
+        const osCopy = navigator.clipboard;
+        const copiedCode = document.getElementById('code-copy')
+        const roomCode = copiedCode.innerHTML
+        osCopy.writeText(copiedCode.innerText).then(() => copiedCode.innerHTML = 'Copied')
+
+        setTimeout(() => {
+            copiedCode.innerHTML = roomCode
+        }, 2500)
+    }
+
     return (
         <section className='container'>
             {data.users && (
@@ -153,8 +164,8 @@ const Lobby = () => {
                                             restDelta: 0.001
                                         }
                                     }}>
-                                    <div className="p-1">
-                                    <b>Share your room with friends: <span className="border border-light rounded p-1">{data.room}</span></b>
+                                    <div className="p-1 ">
+                                        <b>Share your room with friends: <span onClick={copyCode} id='code-copy' className="border border-light rounded p-1">{data.room}</span></b>
                                     </div>
                                 </motion.div>
                                 <motion.button
@@ -198,7 +209,7 @@ const Lobby = () => {
                                         }
                                     }}>
                                     <div className="p-1">
-                                    <b>Share your room with friends: <span className="border border-light rounded p-1">{data.room}</span></b>
+                                        <b>Share your room with friends: <span className="border border-light rounded p-1">{data.room}</span></b>
                                     </div>
                                 </motion.div>
                             </div>)}
