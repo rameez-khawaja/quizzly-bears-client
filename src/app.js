@@ -3,7 +3,7 @@ import { Home, Lobby, Game, HighScores, Results } from "./pages";
 import { useDispatch, useSelector } from "react-redux";
 import { Routes, Route } from "react-router-dom";
 const io = require("socket.io-client");
-const URL = "http://localhost:3000";
+const URL = "https://quizzlybears.herokuapp.com/";
 import './App.css'
 import { AnimatePresence } from "framer-motion";
 import { useLocation } from "react-router-dom";

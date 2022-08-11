@@ -21,7 +21,7 @@ const Results = () => {
 
   useEffect(() => {
     if (submitted==false){
-      axios.post('http://localhost:3000/highscores', {
+      axios.post('https://quizzlybears.herokuapp.com/highscores', {
       username: player,
       score: scoreToSubmit
         })
