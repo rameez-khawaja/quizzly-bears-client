@@ -8,7 +8,7 @@ import { BrowserRouter as Router } from 'react-router-dom';
 import { MemoryRouter } from 'react-router-dom';
 import { createStore } from 'redux';
 
-import quizzlyReducer from '../reducers/index';
+import { quizzlyReducer } from '../reducers/index';
 
 const TestProviders = ({ initState }) => {
     initState ||= {
@@ -18,6 +18,8 @@ const TestProviders = ({ initState }) => {
     }
 
     const testStore = createStore(() => quizzlyReducer(initState, { type: '@@INIT' }))
+    // let testReducer = () => quizzlyReducer(initState, { type: '@@INIT' })
+    // const testStore = createStore(testReducer)
 
 
     return ({ children }) => (
