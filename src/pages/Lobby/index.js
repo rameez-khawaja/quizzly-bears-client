@@ -209,7 +209,7 @@ const Lobby = () => {
                                         }
                                     }}>
                                     <div className="p-1">
-                                        <b>Share your room with friends: <span className="border border-light rounded p-1">{data.room}</span></b>
+                                    <b>Share your room with friends: <span onClick={copyCode} id='code-copy' className="border border-light rounded p-1">{data.room}</span></b>
                                     </div>
                                 </motion.div>
                             </div>)}
