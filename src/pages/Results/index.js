@@ -21,7 +21,7 @@ const Results = () => {
 
   useEffect(() => {
     if (submitted==false){
-      axios.post('http://localhost:3000/low', {
+      axios.post('http://localhost:3000/highscores', {
       username: player,
       score: scoreToSubmit
         })
