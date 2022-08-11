@@ -30,12 +30,12 @@ const Lobby = () => {
     function copyCode(e) {
         const osCopy = navigator.clipboard;
         const copiedCode = document.getElementById('code-copy')
-        const roomCode = copiedCode.innerHTML
+        const roomCode = data.room
         osCopy.writeText(copiedCode.innerText).then(() => copiedCode.innerHTML = 'Copied')
 
         setTimeout(() => {
             copiedCode.innerHTML = roomCode
-        }, 2500)
+        }, 1000)
     }
 
     return (
