@@ -39,7 +39,7 @@ export default function CreateGame() {
 
     function lobbyCodeGenerator() {
         let result = "";
-        let characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+        let characters = 'abcdefghijklmnopqrstuvwxyz0123456789';
         let charactersLength = 9;
         for (let i = 0; i < charactersLength; i++) {
             result += characters.charAt(Math.floor(Math.random() * characters.length));
